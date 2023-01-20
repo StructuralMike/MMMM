@@ -255,6 +255,7 @@ def make_mystery(input_weights, default_settings, args):
             input_weights['openpyramid']['off']['weight'] = 1
         if settings['goal'] == 'completionist':
             force_setting('accessibility', 'locations')
+            force_setting('mystery', 'off')
         if settings['goal'] in ('ganon', 'crystals'):
             roll_setting('crystals_ganon')
         if settings['goal'] == 'crystals':

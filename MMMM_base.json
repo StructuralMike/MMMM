@@ -44,6 +44,7 @@
   "standardize_palettes": "standardize",
   "collection_rate": 1,
   "bps": 1,
+  "mystery": 1,
   "create_spoiler": 1,
   "calc_playthrough": 1,
   "usestartinventory": 0,

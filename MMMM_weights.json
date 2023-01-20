@@ -1,7 +1,7 @@
 {
     "hints": {
         "on": {
-            "weight": 50,
+            "weight": 40,
             "length": 0,
             "execution": 0,
             "familiarity": -1,
@@ -9,7 +9,7 @@
             "expose": false
         },
         "off": {
-            "weight": 50,
+            "weight": 60,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
@@ -104,7 +104,7 @@
             "execution": 0,
             "familiarity": 0,
             "variance": 0,
-            "expose": false
+            "expose": true
         },
         "minorglitches": {
             "weight": 0,
@@ -265,7 +265,7 @@
     },
     "crystals_ganon": {
         "0": {
-            "weight": 5,
+            "weight": 4,
             "length": -6,
             "execution": 3,
             "familiarity": 1,
@@ -273,7 +273,7 @@
             "expose": false
         },
         "1": {
-            "weight": 5,
+            "weight": 4,
             "length": -5,
             "execution": 2,
             "familiarity": 1,
@@ -289,7 +289,7 @@
             "expose": false
         },
         "3": {
-            "weight": 5,
+            "weight": 8,
             "length": -4,
             "execution": 1,
             "familiarity": 1,
@@ -365,7 +365,7 @@
     },
     "difficulty": {
         "normal": {
-            "weight": 82,
+            "weight": 84,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
@@ -373,7 +373,7 @@
             "expose": false
         },
         "hard": {
-            "weight": 14,
+            "weight": 12,
             "length": 0,
             "execution": 3,
             "familiarity": 0,
@@ -1315,6 +1315,42 @@
             "expose": false
         }
     },
+    "collection_rate": {
+        "on": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "off": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "mystery": {
+        "on": {
+            "weight": 20,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 1,
+            "variance": 2,
+            "expose": false
+        },
+        "off": {
+            "weight": 80,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },    
     "tfh_goal": {
         "30": {
             "weight": 0.75,
@@ -1355,7 +1391,7 @@
             "length": 0,
             "execution": 0,
             "familiarity": 2,
-            "variance": 0,
+            "variance": -2,
             "expose": false
         },
         "25": {
@@ -1371,7 +1407,7 @@
             "length": 0,
             "execution": -1,
             "familiarity": -1,
-            "variance": 0,
+            "variance": 2,
             "expose": false
         },
         "55": {
@@ -1379,7 +1415,7 @@
             "length": 0,
             "execution": -1,
             "familiarity": -2,
-            "variance": 0,
+            "variance": 3,
             "expose": false
         },
         "70": {
@@ -1387,7 +1423,7 @@
             "length": 0,
             "execution": -2,
             "familiarity": -3,
-            "variance": 0,
+            "variance": 4,
             "expose": false
         }
     },
@@ -1456,7 +1492,15 @@
             "variance": 0,
             "expose": false
         },
-        "Mushroom,Shovel,Book of Mudora": {
+        "Book of Mudora": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "Mushroom,Shovel": {
             "weight": 1,
             "length": 0,
             "execution": 0,
