@@ -1,0 +1,61 @@
+logic:
+  - always noglitches unless forced otherwise
+  - Guarantees starting boots if any glitch mode
+
+goal:
+  - If ganonhunt and not entrance, pyramid is open or GT is 0 crystals
+  - If ganonhunt and entrance, pyramid is open
+  - If ganon and not entrance, GT crystals is <= ganon crystals 
+
+mode:
+  - If standard, boots hint is rolled.
+  - If standard enemizer, sword is assured.
+
+ohko:
+  - If ohko, enemizer is off
+
+entrance:
+  - If inverted entrance, links house is always shuffled
+  - If insanity entrance, bombbag is always off and you have a starting flute.
+
+doors:
+  - If doors, some wild dungeon items are guaranteed
+  - Dungeon counters are always on 
+
+pottery:
+  - If any dungeon pottery is on, 'dungeon_counter' is on.
+  - If pottery = dungeon or lottery, and it is not a triforce hunt, all dungeon items are wild.
+  - If pottery is not none and not lottery, 'colorizepots' is on (pot checks are colored differently)
+
+dungeon_items:
+  The options are: none, mc, s, b, mcs, mcb, mcsb
+  - 'universal' keys can roll if wild keys have been rolled first
+  - 'restrict_boss_items' (ambrosia) is rolled if there are any non-wild dungeon items
+
+triforcehunt:
+  - Triforce Goal is rolled as a fraction of the available item pool. I.e 30 = 30 in 216, but in pottery lottery 30 = 152
+  - The Goal options are 30, 40, 50, 60
+  - Triforce extra Pool is rolled as a % on top of the Goal. I.e. 10 = 3 extra pieces with a 30 goal in a 216 pool.
+  - The extra pool options are 10%, 25%, 40%, 55%, 70%
+  - Triforcehunt can be Ganonhunt = get the pieces and then kill ganon. You know this is the case when Muradahla is not present
+
+startinventory:
+ - There is a minimum and maximum item count.
+ - Items are first rolled to try and put the settings within the points intervals
+ - If the poins are within the point intervals, there is a chance to roll bonus items
+ - If pseudoboots is on, you don't have starting boots. 
+ 'An item' is a fluid concept. Some examples of "single" items in the weights
+    - 3 Bosshearts
+    - 2 Mail upgrades
+    - Book + Mushroom + Shovel
+    - 420 Rupees 
+
+
+metadata presented after rolling:
+    - Final accumulated points for each attribute
+    - Filler Algorithm used (balanced, major_only, dungeon_only)
+    - Boss item restriction (none, mapcompass, dungeon)
+    - Take any (none, random, fixed)
+    - Pseudoboots (yes, no)
+    - Boots Hint (yes, no)
+    - Extra TF Pool XX% (percent more pieces in pool than required by goal)

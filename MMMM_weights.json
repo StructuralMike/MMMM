@@ -1,0 +1,1612 @@
+{
+    "hints": {
+        "on": {
+            "weight": 50,
+            "length": 0,
+            "execution": 0,
+            "familiarity": -1,
+            "variance": -1,
+            "expose": false
+        },
+        "off": {
+            "weight": 50,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "bombbag": {
+        "on": {
+            "weight": 20,
+            "length": 3,
+            "execution": 1,
+            "familiarity": 5,
+            "variance": 3,
+            "expose": true
+        },
+        "off": {
+            "weight": 80,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": true
+        }
+    },
+    "shopsanity": {
+        "on": {
+            "weight": 35,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 2,
+            "variance": 1,
+            "expose": true
+        },
+        "off": {
+            "weight": 65,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": true
+        }
+    },
+    "pseudoboots": {
+        "on": {
+            "weight": 40,
+            "length": -1,
+            "execution": 0,
+            "familiarity": -1,
+            "variance": -1,
+            "expose": true
+        },
+        "off": {
+            "weight": 60,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": true
+        }
+    },
+    "mode": {
+        "open": {
+            "weight": 50,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": true
+        },
+        "standard": {
+            "weight": 25,
+            "length": 0,
+            "execution": 0,
+            "familiarity": -1,
+            "variance": -1,
+            "expose": true
+        },
+        "inverted": {
+            "weight": 25,
+            "length": 1,
+            "execution": 1,
+            "familiarity": 2,
+            "variance": 0,
+            "expose": true
+        }
+    },
+    "logic": {
+        "noglitches": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "minorglitches": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": true
+        },
+        "owglitches": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": true
+        },
+        "nologic": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": true
+        }
+    },
+    "goal": {
+        "ganon": {
+            "weight": 40,
+            "length": 0,
+            "execution": 0,
+            "familiarity": -1,
+            "variance": 0,
+            "expose": true
+        },
+        "pedestal": {
+            "weight": 5,
+            "length": -1,
+            "execution": 0,
+            "familiarity": 1,
+            "variance": 4,
+            "expose": true
+        },
+        "dungeons": {
+            "weight": 5,
+            "length": 2,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": -1,
+            "expose": true
+        },
+        "triforcehunt": {
+            "weight": 15,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": true
+        },
+        "trinity": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 1,
+            "expose": false
+        },
+        "crystals": {
+            "weight": 20,
+            "length": -1,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 1,
+            "expose": true
+        },
+        "ganonhunt": {
+            "weight": 15,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": true
+        },
+        "completionist": {
+            "weight": 1,
+            "length": 10,
+            "execution": 0,
+            "familiarity": 3,
+            "variance": -5,
+            "expose": true
+        }
+    },
+    "crystals_gt": {
+        "0": {
+            "weight": 1,
+            "length": 0,
+            "execution": 1,
+            "familiarity": 1,
+            "variance": 2,
+            "expose": false
+        },
+        "1": {
+            "weight": 1,
+            "length": 0,
+            "execution": 1,
+            "familiarity": 1,
+            "variance": 2,
+            "expose": false
+        },
+        "2": {
+            "weight": 1,
+            "length": 0,
+            "execution": 1,
+            "familiarity": 1,
+            "variance": 2,
+            "expose": false
+        },
+        "3": {
+            "weight": 1,
+            "length": 0,
+            "execution": 1,
+            "familiarity": 1,
+            "variance": 1,
+            "expose": false
+        },
+        "4": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 1,
+            "expose": false
+        },
+        "5": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 1,
+            "expose": false
+        },
+        "6": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "7": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "crystals_ganon": {
+        "0": {
+            "weight": 5,
+            "length": -6,
+            "execution": 3,
+            "familiarity": 1,
+            "variance": 10,
+            "expose": false
+        },
+        "1": {
+            "weight": 5,
+            "length": -5,
+            "execution": 2,
+            "familiarity": 1,
+            "variance": 9,
+            "expose": false
+        },
+        "2": {
+            "weight": 5,
+            "length": -4,
+            "execution": 1,
+            "familiarity": 1,
+            "variance": 8,
+            "expose": false
+        },
+        "3": {
+            "weight": 5,
+            "length": -4,
+            "execution": 1,
+            "familiarity": 1,
+            "variance": 7,
+            "expose": false
+        },
+        "4": {
+            "weight": 15,
+            "length": -3,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 6,
+            "expose": false
+        },
+        "5": {
+            "weight": 20,
+            "length": -2,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 5,
+            "expose": false
+        },
+        "6": {
+            "weight": 20,
+            "length": -1,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 2,
+            "expose": false
+        },
+        "7": {
+            "weight": 25,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "swords": {
+        "random": {
+            "weight": 60,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": true
+        },
+        "vanilla": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "assured": {
+            "weight": 30,
+            "length": 0,
+            "execution": -1,
+            "familiarity": -1,
+            "variance": -1,
+            "expose": true
+        },
+        "swordless": {
+            "weight": 10,
+            "length": 1,
+            "execution": 4,
+            "familiarity": 1,
+            "variance": 0,
+            "expose": true
+        }
+    },
+    "difficulty": {
+        "normal": {
+            "weight": 82,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "hard": {
+            "weight": 14,
+            "length": 0,
+            "execution": 3,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "expert": {
+            "weight": 4,
+            "length": 1,
+            "execution": 5,
+            "familiarity": 1,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "item_functionality": {
+        "normal": {
+            "weight": 98,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "hard": {
+            "weight": 2,
+            "length": 1,
+            "execution": 4,
+            "familiarity": 1,
+            "variance": 0,
+            "expose": false
+        },
+        "expert": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "flute_mode": {
+        "normal": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "active": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "bow_mode": {
+        "progressive": {
+            "weight": 80,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "silvers": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "retro": {
+            "weight": 20,
+            "length": 0,
+            "execution": 1,
+            "familiarity": 1,
+            "variance": 0,
+            "expose": false
+        },
+        "retro_silvers": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "timer": {
+        "none": {
+            "weight": 96,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "display": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "timed": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "timed-ohko": {
+            "weight": 4,
+            "length": 3,
+            "execution": 5,
+            "familiarity": 3,
+            "variance": 0,
+            "expose": false
+        },
+        "ohko": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "timed-countdown": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "progressive": {
+        "on": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "off": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "accessibility": {
+        "items": {
+            "weight": 75,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "locations": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "none": {
+            "weight": 25,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 2,
+            "variance": -1,
+            "expose": false
+        }
+    },
+    "algorithm": {
+        "balanced": {
+            "weight": 90,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "vanilla_fill": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "major_only": {
+            "weight": 0,
+            "length": -1,
+            "execution": 1,
+            "familiarity": 1,
+            "variance": 0,
+            "expose": false
+        },
+        "dungeon_only": {
+            "weight": 0,
+            "length": -2,
+            "execution": 1,
+            "familiarity": 1,
+            "variance": 1,
+            "expose": false
+        },
+        "district": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "beemizer": {
+        "0": {
+            "weight": 85,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "1": {
+            "weight": 9,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "2": {
+            "weight": 3,
+            "length": 0,
+            "execution": 1,
+            "familiarity": 1,
+            "variance": 0,
+            "expose": false
+        },
+        "3": {
+            "weight": 2,
+            "length": 0,
+            "execution": 1,
+            "familiarity": 1,
+            "variance": 1,
+            "expose": false
+        },
+        "4": {
+            "weight": 1,
+            "length": 0,
+            "execution": 2,
+            "familiarity": 1,
+            "variance": 1,
+            "expose": false
+        }
+    },
+    "restrict_boss_items": {
+        "none": {
+            "weight": 60,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "mapcompass": {
+            "weight": 10,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "dungeon": {
+            "weight": 30,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "openpyramid": {
+        "on": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "off": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "shuffleganon": {
+        "on": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "off": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "shufflelinks": {
+        "on": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "off": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "shuffletavern": {
+        "on": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "off": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "shuffle": {
+        "vanilla": {
+            "weight": 40,
+            "length": 0,
+            "execution": 0,
+            "familiarity": -1,
+            "variance": 0,
+            "expose": true
+        },
+        "restricted": {
+            "weight": 10,
+            "length": 3,
+            "execution": 0,
+            "familiarity": 1,
+            "variance": 3,
+            "expose": true
+        },
+        "crossed": {
+            "weight": 35,
+            "length": 5,
+            "execution": 1,
+            "familiarity": 2,
+            "variance": 4,
+            "expose": true
+        },
+        "insanity": {
+            "weight": 2,
+            "length": 6,
+            "execution": 1,
+            "familiarity": 6,
+            "variance": 5,
+            "expose": true
+        },
+        "lean": {
+            "weight": 14,
+            "length": 5,
+            "execution": 2,
+            "familiarity": 2,
+            "variance": 4,
+            "expose": true
+        }
+    },
+    "overworld_map": {
+        "default": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "compass": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "map": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "take_any": {
+        "none": {
+            "weight": 85,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "random": {
+            "weight": 15,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 2,
+            "variance": 1,
+            "expose": false
+        },
+        "fixed": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 2,
+            "variance": 1,
+            "expose": false
+        }
+    },
+    "shuffleenemies": {
+        "none": {
+            "weight": 85,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": true
+        },
+        "shuffled": {
+            "weight": 15,
+            "length": 1,
+            "execution": 4,
+            "familiarity": 3,
+            "variance": 1,
+            "expose": true
+        },
+        "random": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "shufflebosses": {
+        "none": {
+            "weight": 75,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "simple": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "unique": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "full": {
+            "weight": 25,
+            "length": 1,
+            "execution": 1,
+            "familiarity": 1,
+            "variance": 1,
+            "expose": false
+        },
+        "random": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "enemy_damage": {
+        "default": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "shuffled": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "random": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "enemy_health": {
+        "default": {
+            "weight": 85,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "easy": {
+            "weight": 10,
+            "length": 0,
+            "execution": -2,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "hard": {
+            "weight": 5,
+            "length": 1,
+            "execution": 4,
+            "familiarity": 1,
+            "variance": 0,
+            "expose": false
+        },
+        "expert": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "wild_dungeon_items": {
+        "none": {
+            "weight": 50,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 1,
+            "expose": true
+        },
+        "mc": {
+            "weight": 10,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 1,
+            "variance": 0,
+            "expose": true
+        },
+        "s": {
+            "weight": 10,
+            "length": 1,
+            "execution": 0,
+            "familiarity": 1,
+            "variance": -1,
+            "expose": true
+        },
+        "b": {
+            "weight": 10,
+            "length": 2,
+            "execution": 0,
+            "familiarity": 1,
+            "variance": -3,
+            "expose": true
+        },
+        "mcs": {
+            "weight": 10,
+            "length": 2,
+            "execution": 0,
+            "familiarity": 1,
+            "variance": -1,
+            "expose": true
+        },
+        "mcb": {
+            "weight": 20,
+            "length": 2,
+            "execution": 0,
+            "familiarity": 1,
+            "variance": -3,
+            "expose": true
+        },
+        "mcsb": {
+            "weight": 30,
+            "length": 2,
+            "execution": 0,
+            "familiarity": 1,
+            "variance": -2,
+            "expose": true
+        }
+    },
+    "universal_small_keys": {
+        "on": {
+            "weight": 30,
+            "length": -1,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": -2,
+            "expose": false
+        },
+        "off": {
+            "weight": 70,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "door_shuffle": {
+        "vanilla": {
+            "weight": 70,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": true
+        },
+        "basic": {
+            "weight": 15,
+            "length": 5,
+            "execution": 1,
+            "familiarity": 6,
+            "variance": 1,
+            "expose": true
+        },
+        "partitioned": {
+            "weight": 10,
+            "length": 6,
+            "execution": 1,
+            "familiarity": 8,
+            "variance": 2,
+            "expose": true
+        },
+        "crossed": {
+            "weight": 5,
+            "length": 7,
+            "execution": 2,
+            "familiarity": 10,
+            "variance": 3,
+            "expose": true
+        }
+    },
+    "intensity": {
+        "1": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "2": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "3": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "door_type_mode": {
+        "original": {
+            "weight": 85,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "big": {
+            "weight": 10,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "all": {
+            "weight": 5,
+            "length": 1,
+            "execution": 0,
+            "familiarity": 1,
+            "variance": 1,
+            "expose": false
+        },
+        "chaos": {
+            "weight": 0,
+            "length": 2,
+            "execution": 0,
+            "familiarity": 2,
+            "variance": 2,
+            "expose": false
+        }
+    },
+    "decoupledoors": {
+        "on": {
+            "weight": 10,
+            "length": 2,
+            "execution": 0,
+            "familiarity": 3,
+            "variance": 2,
+            "expose": false
+        },
+        "off": {
+            "weight": 90,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "dropshuffle": {
+        "on": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "off": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "pottery": {
+        "none": {
+            "weight": 40,
+            "length": 0,
+            "execution": 0,
+            "familiarity": -1,
+            "variance": 0,
+            "expose": true
+        },
+        "keys": {
+            "weight": 15,
+            "length": 1,
+            "execution": 0,
+            "familiarity": 2,
+            "variance": 0,
+            "expose": true
+        },
+        "dungeon": {
+            "weight": 5,
+            "length": 4,
+            "execution": 0,
+            "familiarity": 4,
+            "variance": 1,
+            "expose": true
+        },
+        "cave": {
+            "weight": 5,
+            "length": 2,
+            "execution": 0,
+            "familiarity": 4,
+            "variance": 1,
+            "expose": true
+        },
+        "cavekeys": {
+            "weight": 5,
+            "length": 3,
+            "execution": 0,
+            "familiarity": 4,
+            "variance": 1,
+            "expose": true
+        },
+        "reduced": {
+            "weight": 0,
+            "length": 1,
+            "execution": 0,
+            "familiarity": 4,
+            "variance": 1,
+            "expose": false
+        },
+        "clustered": {
+            "weight": 0,
+            "length": 1,
+            "execution": 0,
+            "familiarity": 4,
+            "variance": 1,
+            "expose": false
+        },
+        "nonempty": {
+            "weight": 0,
+            "length": 2,
+            "execution": 0,
+            "familiarity": 4,
+            "variance": 1,
+            "expose": false
+        },
+        "lottery": {
+            "weight": 30,
+            "length": 4,
+            "execution": 0,
+            "familiarity": 6,
+            "variance": -1,
+            "expose": true
+        }
+    },
+    "dungeon_counters": {
+        "default": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "off": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "on": {
+            "weight": 50,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": -1,
+            "expose": false
+        },
+        "pickup": {
+            "weight": 50,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "boots_hint": {
+        "on": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": -1,
+            "expose": false
+        },
+        "off": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "experimental": {
+        "on": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "off": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "tfh_goal": {
+        "30": {
+            "weight": 0.75,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "40": {
+            "weight": 0.75,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "50": {
+            "weight": 0.75,
+            "length": 1,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "60": {
+            "weight": 0.5,
+            "length": 1,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "tfh_extra_pool": {
+        "10": {
+            "weight": 0.25,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 2,
+            "variance": 0,
+            "expose": false
+        },
+        "25": {
+            "weight": 0.5,
+            "length": 0,
+            "execution": -1,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "40": {
+            "weight": 0.75,
+            "length": 0,
+            "execution": -1,
+            "familiarity": -1,
+            "variance": 0,
+            "expose": false
+        },
+        "55": {
+            "weight": 0.75,
+            "length": 0,
+            "execution": -1,
+            "familiarity": -2,
+            "variance": 0,
+            "expose": false
+        },
+        "70": {
+            "weight": 0.5,
+            "length": 0,
+            "execution": -2,
+            "familiarity": -3,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "startinventory": {
+        "Pegasus Boots": {
+            "weight": 1,
+            "length": -1,
+            "execution": 0,
+            "familiarity": -1,
+            "variance": -2,
+            "expose": false
+        },
+        "Ice Rod": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": -1,
+            "expose": false
+        },
+        "Fire Rod": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "Hammer": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": -1,
+            "expose": false
+        },
+        "Hookshot": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": -1,
+            "expose": false
+        },
+        "Magic Mirror": {
+            "weight": 1,
+            "length": -1,
+            "execution": 0,
+            "familiarity": -1,
+            "variance": -1,
+            "expose": false
+        },
+        "Ocarina": {
+            "weight": 1,
+            "length": -1,
+            "execution": 0,
+            "familiarity": -1,
+            "variance": -1,
+            "expose": false
+        },
+        "Cape": {
+            "weight": 1,
+            "length": 0,
+            "execution": -1,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "Mushroom,Shovel,Book of Mudora": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "Lamp": {
+            "weight": 1,
+            "length": 0,
+            "execution": -1,
+            "familiarity": -1,
+            "variance": 0,
+            "expose": false
+        },
+        "Magic Powder": {
+            "weight": 1,
+            "length": 0,
+            "execution": -1,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "Moon Pearl": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 1,
+            "expose": false
+        },
+        "Cane of Somaria": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "Flippers": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "Bombos": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "Ether,Quake": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "Bottle,Bug Catching Net": {
+            "weight": 1,
+            "length": 0,
+            "execution": -1,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "Progressive Armor,Progressive Armor": {
+            "weight": 1,
+            "length": 0,
+            "execution": -2,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "Blue Boomerang": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "Red Shield": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "Cane of Byrna": {
+            "weight": 1,
+            "length": 0,
+            "execution": -1,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "Boss Heart Container,Boss Heart Container,Boss Heart Container": {
+            "weight": 1,
+            "length": 0,
+            "execution": -1,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "Rupees (300), Rupees (100), Rupees (20)": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": -1,
+            "variance": 0,
+            "expose": false
+        },
+        "Progressive Bow": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "Small Key (Universal),Small Key (Universal),Small Key (Universal)": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": -1,
+            "expose": false
+        },
+        "Bomb Upgrade (+10)": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "Arrow Upgrade (+10)": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    }
+}
