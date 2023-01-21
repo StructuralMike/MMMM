@@ -256,6 +256,7 @@ def make_mystery(input_weights, default_settings, args):
         if settings['goal'] == 'completionist':
             force_setting('accessibility', 'locations')
             force_setting('mystery', 'off')
+            force_setting('collection_rate', 'on')
         if settings['goal'] in ('ganon', 'crystals'):
             roll_setting('crystals_ganon')
         if settings['goal'] == 'crystals':
@@ -286,6 +287,11 @@ def make_mystery(input_weights, default_settings, args):
             force_setting('shufflelinks', 'off')
             force_setting('shuffletavern', 'off')
             force_setting('overworld_map', 'default')
+        if settings['shuffle'] == 'lean':
+            input_weights['pottery']['lottery']['weight'] = 0
+            input_weights['pottery']['cave']['weight'] = 0
+            input_weights['pottery']['cavekeys']['weight'] = 0
+            force_setting('shopsanity', 'off')
         if settings['shuffle'] == 'insanity':
             force_setting('bombbag', 'off')
             startinventory.append('Ocarina')
@@ -371,6 +377,12 @@ def make_mystery(input_weights, default_settings, args):
             input_weights['startinventory']['Bomb Upgrade (+10)']['weight'] = 0
 
         roll_setting('shopsanity')
+
+        roll_setting('mystery')
+        if settings['mystery'] == 1 or (settings['shopsanity'] == 0 and settings['pottery'] == 'none'):
+            force_setting('collection_rate', 'off')
+        roll_setting('collection_rate')
+
         roll_setting('flute_mode')
         roll_setting('swords')
         roll_setting('shufflebosses')
