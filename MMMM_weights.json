@@ -20,7 +20,7 @@
     "bombbag": {
         "on": {
             "weight": 20,
-            "length": 3,
+            "length": 1,
             "execution": 1,
             "familiarity": 5,
             "variance": 3,
@@ -813,7 +813,7 @@
     },
     "take_any": {
         "none": {
-            "weight": 85,
+            "weight": 80,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
@@ -821,7 +821,7 @@
             "expose": false
         },
         "random": {
-            "weight": 15,
+            "weight": 20,
             "length": 0,
             "execution": 0,
             "familiarity": 2,
@@ -839,7 +839,7 @@
     },
     "shuffleenemies": {
         "none": {
-            "weight": 85,
+            "weight": 80,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
@@ -847,7 +847,7 @@
             "expose": true
         },
         "shuffled": {
-            "weight": 15,
+            "weight": 20,
             "length": 1,
             "execution": 4,
             "familiarity": 3,
@@ -967,7 +967,7 @@
     },
     "wild_dungeon_items": {
         "none": {
-            "weight": 50,
+            "weight": 40,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
@@ -983,7 +983,7 @@
             "expose": true
         },
         "s": {
-            "weight": 10,
+            "weight": 15,
             "length": 1,
             "execution": 0,
             "familiarity": 1,
@@ -991,7 +991,7 @@
             "expose": true
         },
         "b": {
-            "weight": 10,
+            "weight": 15,
             "length": 2,
             "execution": 0,
             "familiarity": 1,
@@ -1029,7 +1029,7 @@
             "length": -1,
             "execution": 0,
             "familiarity": 0,
-            "variance": -2,
+            "variance": 1,
             "expose": false
         },
         "off": {
@@ -1335,11 +1335,11 @@
     },
     "mystery": {
         "on": {
-            "weight": 20,
+            "weight": 0,
             "length": 0,
             "execution": 0,
             "familiarity": 1,
-            "variance": 2,
+            "variance": 0,
             "expose": false
         },
         "off": {

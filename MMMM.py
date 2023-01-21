@@ -6,7 +6,7 @@ import sys
 from statistics import stdev
 from statistics import mean
 
-MAX_ATTEMPTS = 20
+MAX_ATTEMPTS = 75
 
 # Non-potchecks
 NONDUNGEON = 93
