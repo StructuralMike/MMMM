@@ -55,6 +55,5 @@
   "enemizercli": ".\\EnemizerCLI\\EnemizerCLI.Core.exe",
   "multi": 1,
   "rom": ".\\Zelda no Densetsu - Kamigami no Triforce (Japan).sfc",
-  "race": 1,
   "outputpath": ".\\output"
 }
