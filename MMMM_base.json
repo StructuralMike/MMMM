@@ -50,7 +50,6 @@
   "usestartinventory": 0,
   "saveonexit": "ask",
   "enemizercli": ".\\EnemizerCLI\\EnemizerCLI.Core.exe",
-  "multi": 1,
   "rom": ".\\Zelda no Densetsu - Kamigami no Triforce (Japan).sfc",
   "outputpath": ".\\output"
 }

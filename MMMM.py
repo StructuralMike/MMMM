@@ -379,7 +379,7 @@ def make_mystery(input_weights, default_settings, args):
         roll_setting('shopsanity')
 
         roll_setting('mystery')
-        if settings['mystery'] == 1 or (settings['shopsanity'] == 0 and settings['pottery'] == 'none'):
+        if (settings['shopsanity'] == 0 and settings['pottery'] == 'none'):
             force_setting('collection_rate', 'off')
         roll_setting('collection_rate')
 
