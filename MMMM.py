@@ -97,7 +97,7 @@ def make_mystery(input_weights, default_settings, args):
         pool_size = NONDUNGEON
         pool_size += DUNGEON
         pool_size += POTTERY[settings['pottery']]
-        if settings['shopsanity'] == 'on':
+        if settings['shopsanity'] == 1:
             pool_size += SHOPSANITY
         if settings['dropshuffle'] == 1:
             pool_size += KEYDROPS
@@ -107,7 +107,7 @@ def make_mystery(input_weights, default_settings, args):
     
     def determine_mandatory_pool_size() -> int:
         mandatory_pool_size = INVENTORY + MAPSANDCOMPASSES + BIGKEYS + SMALLKEYS + BOSSHEARTS
-        if settings['shopsanity'] == 'on':
+        if settings['shopsanity'] == 1:
             mandatory_pool_size += SHOPUPGRADES
         if settings['dropshuffle'] == 1:
             mandatory_pool_size += KEYDROPS
@@ -119,7 +119,7 @@ def make_mystery(input_weights, default_settings, args):
             mandatory_pool_size += POTTERY['keys']
         return mandatory_pool_size        
 
-    def simulate_tfh(goal, pool, total):
+    def simulate_tfh(goal:int, pool:int, total:int):
         if total < 300:
             cpm = 1.67
         elif total < 500:
@@ -160,18 +160,17 @@ def make_mystery(input_weights, default_settings, args):
                 continue
             tf_goal = int(int(tf_goalfraction)*basefraction * random.uniform(0.85,1.15))
             for tf_pooldelta, poolpoints in input_weights['tfh_extra_pool'].items():
-                if random.random() > poolpoints['weight']:
-                    continue
                 tf_pool = int(tf_goal * (1+int(tf_pooldelta)/100) + 1)
                 if tf_pool <= tf_goal:
                     continue
                 if pool_space-tf_pool < 50 or tf_pool/pool_space > 0.8:
                     continue
+                if random.random() > poolpoints['weight']:
+                    continue
                 length, variance = simulate_tfh(tf_goal, tf_pool, pool_size)
                 familiarity = poolpoints['familiarity']
                 execution = poolpoints['execution']
                 roll_weights.append([tf_goal,tf_pool,length,execution,familiarity,variance])
-
         return roll_weights
 
     def better_than_current(new_points:dict) -> bool:
@@ -503,6 +502,7 @@ def main():
     parser.add_argument('--max_variance', help='-15 to 15')
     parser.add_argument('--min_items', help='')
     parser.add_argument('--max_items', help='')
+    parser.add_argument('--multi', help='', action='store_true')
 
     args = parser.parse_args()
 
@@ -512,60 +512,60 @@ def main():
 
     args.preset = args.preset if args.preset else 'friendly'
     if args.preset == 'friendly':
-        args.min_length = int(args.min_length) if args.min_length else -5
-        args.max_length = int(args.max_length) if args.max_length else 4
-        args.min_execution = int(args.min_execution) if args.min_execution else -5
-        args.max_execution = int(args.max_execution) if args.max_execution else 3
-        args.min_familiarity = int(args.min_familiarity) if args.min_familiarity else -5
-        args.max_familiarity = int(args.max_familiarity) if args.max_familiarity else 5
-        args.min_variance = int(args.min_variance) if args.min_variance else -4
-        args.max_variance = int(args.max_variance) if args.max_variance else 10
-        args.min_items = int(args.min_items) if args.min_items else 1
-        args.max_items = int(args.max_items) if args.max_items else  4
+        args.min_length = int(float(args.min_length)) if args.min_length else -5
+        args.max_length = int(float(args.max_length)) if args.max_length else 4
+        args.min_execution = int(float(args.min_execution)) if args.min_execution else -5
+        args.max_execution = int(float(args.max_execution)) if args.max_execution else 3
+        args.min_familiarity = int(float(args.min_familiarity)) if args.min_familiarity else -5
+        args.max_familiarity = int(float(args.max_familiarity)) if args.max_familiarity else 5
+        args.min_variance = int(float(args.min_variance)) if args.min_variance else -4
+        args.max_variance = int(float(args.max_variance)) if args.max_variance else 10
+        args.min_items = int(float(args.min_items)) if args.min_items else 1
+        args.max_items = int(float(args.max_items)) if args.max_items else 4
     if args.preset == 'notslow':
-        args.min_length = -5
-        args.max_length = 0
-        args.min_execution = -5
-        args.max_execution = 10
-        args.min_familiarity = -3
-        args.max_familiarity = 20
-        args.min_variance = -10
-        args.max_variance = 10
-        args.min_items = 2
-        args.max_items = 6
+        args.min_length = int(float(args.min_length)) if args.min_length else -5
+        args.max_length = int(float(args.max_length)) if args.max_length else 0
+        args.min_execution = int(float(args.min_execution)) if args.min_execution else -5
+        args.max_execution = int(float(args.max_execution)) if args.max_execution else 10
+        args.min_familiarity = int(float(args.min_familiarity)) if args.min_familiarity else -3
+        args.max_familiarity = int(float(args.max_familiarity)) if args.max_familiarity else 20
+        args.min_variance = int(float(args.min_variance)) if args.min_variance else -10
+        args.max_variance = int(float(args.max_variance)) if args.max_variance else 10
+        args.min_items = int(float(args.min_items)) if args.min_items else 1
+        args.max_items = int(float(args.max_items)) if args.max_items else 4
     if args.preset == 'complex':
-        args.min_length = 3
-        args.max_length = 12
-        args.min_execution = 0
-        args.max_execution = 6
-        args.min_familiarity = 8
-        args.max_familiarity = 20
-        args.min_variance = -6
-        args.max_variance = 8
-        args.min_items = 1
-        args.max_items = 4
+        args.min_length = int(float(args.min_length)) if args.min_length else 3
+        args.max_length = int(float(args.max_length)) if args.max_length else 12
+        args.min_execution = int(float(args.min_execution)) if args.min_execution else 0
+        args.max_execution = int(float(args.max_execution)) if args.max_execution else 6
+        args.min_familiarity = int(float(args.min_familiarity)) if args.min_familiarity else 8
+        args.max_familiarity = int(float(args.max_familiarity)) if args.max_familiarity else 20
+        args.min_variance = int(float(args.min_variance)) if args.min_variance else -6
+        args.max_variance = int(float(args.max_variance)) if args.max_variance else 8
+        args.min_items = int(float(args.min_items)) if args.min_items else 1
+        args.max_items = int(float(args.max_items)) if args.max_items else 4
     if args.preset == 'ordeal':
-        args.min_length = 10
-        args.max_length = 30
-        args.min_execution = 4
-        args.max_execution = 10
-        args.min_familiarity = 15
-        args.max_familiarity = 30
-        args.min_variance = -6
-        args.max_variance = 5
-        args.min_items = 0
-        args.max_items = 4
+        args.min_length = int(float(args.min_length)) if args.min_length else 10
+        args.max_length = int(float(args.max_length)) if args.max_length else 30
+        args.min_execution = int(float(args.min_execution)) if args.min_execution else 4
+        args.max_execution = int(float(args.max_execution)) if args.max_execution else 10
+        args.min_familiarity = int(float(args.min_familiarity)) if args.min_familiarity else 15
+        args.max_familiarity = int(float(args.max_familiarity)) if args.max_familiarity else 30
+        args.min_variance = int(float(args.min_variance)) if args.min_variance else -6
+        args.max_variance = int(float(args.max_variance)) if args.max_variance else 5
+        args.min_items = int(float(args.min_items)) if args.min_items else 0
+        args.max_items = int(float(args.max_items)) if args.max_items else 4
     if args.preset == 'chaos':
-        args.min_length = -100
-        args.max_length = 100
-        args.min_execution = -100
-        args.max_execution = 100
-        args.min_familiarity = -100
-        args.max_familiarity = 100
-        args.min_variance = -100
-        args.max_variance = 100
-        args.min_items = 1
-        args.max_items = 10
+        args.min_length = int(float(args.min_length)) if args.min_length else -100
+        args.max_length = int(float(args.max_length)) if args.max_length else 100
+        args.min_execution = int(float(args.min_execution)) if args.min_execution else -100
+        args.max_execution = int(float(args.max_execution)) if args.max_execution else 100
+        args.min_familiarity = int(float(args.min_familiarity)) if args.min_familiarity else -100
+        args.max_familiarity = int(float(args.max_familiarity)) if args.max_familiarity else 100
+        args.min_variance = int(float(args.min_variance)) if args.min_variance else -100
+        args.max_variance = int(float(args.max_variance)) if args.max_variance else 100
+        args.min_items = int(float(args.min_items)) if args.min_items else 1
+        args.max_items = int(float(args.max_items)) if args.max_items else 4
 
     with open(weight_file, "r", encoding='utf-8') as f:
         input_weights = json.load(f)
@@ -588,6 +588,13 @@ def main():
             if setting in input_weights and option in input_weights[setting]:
                 print_to_stdout(f'Vetoing {setting}: {option}')
                 input_weights[setting][option]['weight'] = 0
+
+    if args.multi:
+        input_weights['goal']['triforcehunt']['weight'] = 0
+        input_weights['goal']['ganonhunt']['weight'] = 0
+        input_weights['goal']['completionist']['weight'] = 0
+        input_weights['accessibility']['none']['weight'] = 0
+        input_weights['mode']['standard']['weight'] = 0
 
     mystery_settings = make_mystery(input_weights, default_settings, args)
     if not mystery_settings:
