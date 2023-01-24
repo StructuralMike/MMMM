@@ -492,16 +492,16 @@ def main():
     parser.add_argument('--force', help='setting1:option,setting2:option')
     parser.add_argument('--veto', help='setting1:option,setting2:option')
     parser.add_argument('--preset', help='friendly, notslow, complex, ordeal, or chaos')
-    parser.add_argument('--min_length', help='-5 to 30')
-    parser.add_argument('--max_length', help='-5 to 30')
-    parser.add_argument('--min_execution', help='-5 to 30')
-    parser.add_argument('--max_execution', help='-5 to 30')
-    parser.add_argument('--min_familiarity', help='-5 to 30')
-    parser.add_argument('--max_familiarity', help='-5 to 30')
-    parser.add_argument('--min_variance', help='-15 to 15')
-    parser.add_argument('--max_variance', help='-15 to 15')
-    parser.add_argument('--min_items', help='')
-    parser.add_argument('--max_items', help='')
+    parser.add_argument('--min_length', help='-5 to 30', type=int)
+    parser.add_argument('--max_length', help='-5 to 30', type=int)
+    parser.add_argument('--min_execution', help='-5 to 30', type=int)
+    parser.add_argument('--max_execution', help='-5 to 30', type=int)
+    parser.add_argument('--min_familiarity', help='-5 to 30', type=int)
+    parser.add_argument('--max_familiarity', help='-5 to 30', type=int)
+    parser.add_argument('--min_variance', help='-15 to 15', type=int)
+    parser.add_argument('--max_variance', help='-15 to 15', type=int)
+    parser.add_argument('--min_items', help='', type=int)
+    parser.add_argument('--max_items', help='', type=int)
     parser.add_argument('--multi', help='', action='store_true')
 
     args = parser.parse_args()
@@ -512,60 +512,60 @@ def main():
 
     args.preset = args.preset if args.preset else 'friendly'
     if args.preset == 'friendly':
-        args.min_length = int(float(args.min_length)) if args.min_length else -5
-        args.max_length = int(float(args.max_length)) if args.max_length else 4
-        args.min_execution = int(float(args.min_execution)) if args.min_execution else -5
-        args.max_execution = int(float(args.max_execution)) if args.max_execution else 3
-        args.min_familiarity = int(float(args.min_familiarity)) if args.min_familiarity else -5
-        args.max_familiarity = int(float(args.max_familiarity)) if args.max_familiarity else 5
-        args.min_variance = int(float(args.min_variance)) if args.min_variance else -4
-        args.max_variance = int(float(args.max_variance)) if args.max_variance else 10
-        args.min_items = int(float(args.min_items)) if args.min_items else 1
-        args.max_items = int(float(args.max_items)) if args.max_items else 4
+        args.min_length = args.min_length if args.min_length else -5
+        args.max_length = args.max_length if args.max_length else 4
+        args.min_execution = args.min_execution if args.min_execution else -5
+        args.max_execution = args.max_execution if args.max_execution else 3
+        args.min_familiarity = args.min_familiarity if args.min_familiarity else -5
+        args.max_familiarity = args.max_familiarity if args.max_familiarity else 5
+        args.min_variance = args.min_variance if args.min_variance else -4
+        args.max_variance = args.max_variance if args.max_variance else 10
+        args.min_items = args.min_items if args.min_items else 1
+        args.max_items = args.max_items if args.max_items else 4
     if args.preset == 'notslow':
-        args.min_length = int(float(args.min_length)) if args.min_length else -5
-        args.max_length = int(float(args.max_length)) if args.max_length else 0
-        args.min_execution = int(float(args.min_execution)) if args.min_execution else -5
-        args.max_execution = int(float(args.max_execution)) if args.max_execution else 10
-        args.min_familiarity = int(float(args.min_familiarity)) if args.min_familiarity else -3
-        args.max_familiarity = int(float(args.max_familiarity)) if args.max_familiarity else 20
-        args.min_variance = int(float(args.min_variance)) if args.min_variance else -10
-        args.max_variance = int(float(args.max_variance)) if args.max_variance else 10
-        args.min_items = int(float(args.min_items)) if args.min_items else 1
-        args.max_items = int(float(args.max_items)) if args.max_items else 4
+        args.min_length = args.min_length if args.min_length else -5
+        args.max_length = args.max_length if args.max_length else 0
+        args.min_execution = args.min_execution if args.min_execution else -5
+        args.max_execution = args.max_execution if args.max_execution else 10
+        args.min_familiarity = args.min_familiarity if args.min_familiarity else -3
+        args.max_familiarity = args.max_familiarity if args.max_familiarity else 20
+        args.min_variance = args.min_variance if args.min_variance else -10
+        args.max_variance = args.max_variance if args.max_variance else 10
+        args.min_items = args.min_items if args.min_items else 1
+        args.max_items = args.max_items if args.max_items else 4
     if args.preset == 'complex':
-        args.min_length = int(float(args.min_length)) if args.min_length else 3
-        args.max_length = int(float(args.max_length)) if args.max_length else 12
-        args.min_execution = int(float(args.min_execution)) if args.min_execution else 0
-        args.max_execution = int(float(args.max_execution)) if args.max_execution else 6
-        args.min_familiarity = int(float(args.min_familiarity)) if args.min_familiarity else 8
-        args.max_familiarity = int(float(args.max_familiarity)) if args.max_familiarity else 20
-        args.min_variance = int(float(args.min_variance)) if args.min_variance else -6
-        args.max_variance = int(float(args.max_variance)) if args.max_variance else 8
-        args.min_items = int(float(args.min_items)) if args.min_items else 1
-        args.max_items = int(float(args.max_items)) if args.max_items else 4
+        args.min_length = args.min_length if args.min_length else 3
+        args.max_length = args.max_length if args.max_length else 12
+        args.min_execution = args.min_execution if args.min_execution else 0
+        args.max_execution = args.max_execution if args.max_execution else 6
+        args.min_familiarity = args.min_familiarity if args.min_familiarity else 8
+        args.max_familiarity = args.max_familiarity if args.max_familiarity else 20
+        args.min_variance = args.min_variance if args.min_variance else -6
+        args.max_variance = args.max_variance if args.max_variance else 8
+        args.min_items = args.min_items if args.min_items else 1
+        args.max_items = args.max_items if args.max_items else 4
     if args.preset == 'ordeal':
-        args.min_length = int(float(args.min_length)) if args.min_length else 10
-        args.max_length = int(float(args.max_length)) if args.max_length else 30
-        args.min_execution = int(float(args.min_execution)) if args.min_execution else 4
-        args.max_execution = int(float(args.max_execution)) if args.max_execution else 10
-        args.min_familiarity = int(float(args.min_familiarity)) if args.min_familiarity else 15
-        args.max_familiarity = int(float(args.max_familiarity)) if args.max_familiarity else 30
-        args.min_variance = int(float(args.min_variance)) if args.min_variance else -6
-        args.max_variance = int(float(args.max_variance)) if args.max_variance else 5
-        args.min_items = int(float(args.min_items)) if args.min_items else 0
-        args.max_items = int(float(args.max_items)) if args.max_items else 4
+        args.min_length = args.min_length if args.min_length else 10
+        args.max_length = args.max_length if args.max_length else 30
+        args.min_execution = args.min_execution if args.min_execution else 4
+        args.max_execution = args.max_execution if args.max_execution else 10
+        args.min_familiarity = args.min_familiarity if args.min_familiarity else 15
+        args.max_familiarity = args.max_familiarity if args.max_familiarity else 30
+        args.min_variance = args.min_variance if args.min_variance else -6
+        args.max_variance = args.max_variance if args.max_variance else 5
+        args.min_items = args.min_items if args.min_items else 0
+        args.max_items = args.max_items if args.max_items else 4
     if args.preset == 'chaos':
-        args.min_length = int(float(args.min_length)) if args.min_length else -100
-        args.max_length = int(float(args.max_length)) if args.max_length else 100
-        args.min_execution = int(float(args.min_execution)) if args.min_execution else -100
-        args.max_execution = int(float(args.max_execution)) if args.max_execution else 100
-        args.min_familiarity = int(float(args.min_familiarity)) if args.min_familiarity else -100
-        args.max_familiarity = int(float(args.max_familiarity)) if args.max_familiarity else 100
-        args.min_variance = int(float(args.min_variance)) if args.min_variance else -100
-        args.max_variance = int(float(args.max_variance)) if args.max_variance else 100
-        args.min_items = int(float(args.min_items)) if args.min_items else 1
-        args.max_items = int(float(args.max_items)) if args.max_items else 4
+        args.min_length = args.min_length if args.min_length else -100
+        args.max_length = args.max_length if args.max_length else 100
+        args.min_execution = args.min_execution if args.min_execution else -100
+        args.max_execution = args.max_execution if args.max_execution else 100
+        args.min_familiarity = args.min_familiarity if args.min_familiarity else -100
+        args.max_familiarity = args.max_familiarity if args.max_familiarity else 100
+        args.min_variance = args.min_variance if args.min_variance else -100
+        args.max_variance = args.max_variance if args.max_variance else 100
+        args.min_items = args.min_items if args.min_items else 1
+        args.max_items = args.max_items if args.max_items else 4
 
     with open(weight_file, "r", encoding='utf-8') as f:
         input_weights = json.load(f)
