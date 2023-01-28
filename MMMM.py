@@ -121,13 +121,17 @@ def make_mystery(input_weights, default_settings, args):
 
     def simulate_tfh(goal:int, pool:int, total:int):
         if total < 300:
-            cpm = 1.67
+            cpm = 1.7
+            if settings['shuffle'] != 'vanilla':
+                cpm = cpm*0.8
         elif total < 500:
-            cpm = 3.33
+            cpm = 3.3
         elif total < 1000:
             cpm = 4
         else:
-            cpm = 5.33        
+            cpm = 5.3
+        if settings['door_shuffle'] != 'vanilla':
+            cpm = cpm*0.9
         time_per_run = [None]*500
 
         for i in range(500):
