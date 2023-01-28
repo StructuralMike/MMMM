@@ -6,7 +6,7 @@ import sys
 from statistics import stdev
 from statistics import mean
 
-MAX_ATTEMPTS = 75
+MAX_ATTEMPTS = 1000
 
 # Non-potchecks
 NONDUNGEON = 93
@@ -231,6 +231,9 @@ def make_mystery(input_weights, default_settings, args):
     cached_weights = copy.deepcopy(input_weights)
     attempts = 0
     while attempts <= MAX_ATTEMPTS:
+        if attempts > 100:
+            cached_weights['goal']['triforcehunt']['weight'] = 0
+            cached_weights['goal']['ganonhunt']['weight'] = 0
         attempts += 1
         settings = copy.copy(default_settings)
         input_weights = copy.deepcopy(cached_weights)
@@ -266,11 +269,10 @@ def make_mystery(input_weights, default_settings, args):
             force_setting('openpyramid', 'on')
 
         roll_setting('mode')
-#        if settings['mode'] == 'inverted':
-#            force_setting('experimental', 'off')
         if settings['mode'] == 'standard':
             input_weights['boots_hint']['on']['weight'] = input_weights['boots_hint']['off']['weight']
-            force_setting('flute_mode', 'normal')
+            input_weights['startinventory']['Ocarina']['weight'] = 0
+            input_weights['shuffle']['insanity']['weight'] = 0
              
         roll_setting('timer')
         if settings['timer'] != 'none':
@@ -292,6 +294,7 @@ def make_mystery(input_weights, default_settings, args):
             force_setting('overworld_map', 'default')
         if settings['shuffle'] == 'lean':
             input_weights['pottery']['lottery']['weight'] = 0
+            input_weights['pottery']['reduced']['weight'] = 0
             input_weights['pottery']['cave']['weight'] = 0
             input_weights['pottery']['cavekeys']['weight'] = 0
             force_setting('shopsanity', 'off')
@@ -378,6 +381,7 @@ def make_mystery(input_weights, default_settings, args):
         roll_setting('bombbag')
         if settings['bombbag'] == 1:
             input_weights['startinventory']['Bomb Upgrade (+10)']['weight'] = 0
+            input_weights['startinventory']['Bombs (10)']['weight'] = 0
 
         roll_setting('shopsanity')
 
@@ -439,7 +443,7 @@ def make_mystery(input_weights, default_settings, args):
             item_weights = input_weights['startinventory'][item]
             if len(startinventory) >= args.max_items or within_limits(score):
                 break
-            if better_than_current(item_weights):
+            if better_than_current(item_weights) and random.random() > 0.25:
                 score['length'] += item_weights['length']
                 score['execution'] += item_weights['execution']
                 score['familiarity'] += item_weights['familiarity']
@@ -516,27 +520,27 @@ def main():
 
     args.preset = args.preset if args.preset else 'friendly'
     if args.preset == 'friendly':
-        args.min_length = args.min_length if args.min_length else -5
-        args.max_length = args.max_length if args.max_length else 4
+        args.min_length = args.min_length if args.min_length else -6
+        args.max_length = args.max_length if args.max_length else 2
         args.min_execution = args.min_execution if args.min_execution else -5
         args.max_execution = args.max_execution if args.max_execution else 3
         args.min_familiarity = args.min_familiarity if args.min_familiarity else -5
         args.max_familiarity = args.max_familiarity if args.max_familiarity else 5
         args.min_variance = args.min_variance if args.min_variance else -4
-        args.max_variance = args.max_variance if args.max_variance else 10
+        args.max_variance = args.max_variance if args.max_variance else 5
         args.min_items = args.min_items if args.min_items else 1
         args.max_items = args.max_items if args.max_items else 4
     if args.preset == 'notslow':
-        args.min_length = args.min_length if args.min_length else -5
+        args.min_length = args.min_length if args.min_length else -6
         args.max_length = args.max_length if args.max_length else 0
         args.min_execution = args.min_execution if args.min_execution else -5
-        args.max_execution = args.max_execution if args.max_execution else 10
+        args.max_execution = args.max_execution if args.max_execution else 5
         args.min_familiarity = args.min_familiarity if args.min_familiarity else -3
-        args.max_familiarity = args.max_familiarity if args.max_familiarity else 20
-        args.min_variance = args.min_variance if args.min_variance else -10
-        args.max_variance = args.max_variance if args.max_variance else 10
-        args.min_items = args.min_items if args.min_items else 1
-        args.max_items = args.max_items if args.max_items else 4
+        args.max_familiarity = args.max_familiarity if args.max_familiarity else 15
+        args.min_variance = args.min_variance if args.min_variance else -5
+        args.max_variance = args.max_variance if args.max_variance else 5
+        args.min_items = args.min_items if args.min_items else 0
+        args.max_items = args.max_items if args.max_items else 5
     if args.preset == 'complex':
         args.min_length = args.min_length if args.min_length else 3
         args.max_length = args.max_length if args.max_length else 12
@@ -544,10 +548,10 @@ def main():
         args.max_execution = args.max_execution if args.max_execution else 6
         args.min_familiarity = args.min_familiarity if args.min_familiarity else 8
         args.max_familiarity = args.max_familiarity if args.max_familiarity else 20
-        args.min_variance = args.min_variance if args.min_variance else -6
-        args.max_variance = args.max_variance if args.max_variance else 8
-        args.min_items = args.min_items if args.min_items else 1
-        args.max_items = args.max_items if args.max_items else 4
+        args.min_variance = args.min_variance if args.min_variance else -8
+        args.max_variance = args.max_variance if args.max_variance else 3
+        args.min_items = args.min_items if args.min_items else 0
+        args.max_items = args.max_items if args.max_items else 3
     if args.preset == 'ordeal':
         args.min_length = args.min_length if args.min_length else 10
         args.max_length = args.max_length if args.max_length else 30
@@ -555,10 +559,10 @@ def main():
         args.max_execution = args.max_execution if args.max_execution else 10
         args.min_familiarity = args.min_familiarity if args.min_familiarity else 15
         args.max_familiarity = args.max_familiarity if args.max_familiarity else 30
-        args.min_variance = args.min_variance if args.min_variance else -6
-        args.max_variance = args.max_variance if args.max_variance else 5
+        args.min_variance = args.min_variance if args.min_variance else -8
+        args.max_variance = args.max_variance if args.max_variance else 1
         args.min_items = args.min_items if args.min_items else 0
-        args.max_items = args.max_items if args.max_items else 4
+        args.max_items = args.max_items if args.max_items else 2
     if args.preset == 'chaos':
         args.min_length = args.min_length if args.min_length else -100
         args.max_length = args.max_length if args.max_length else 100
@@ -568,8 +572,8 @@ def main():
         args.max_familiarity = args.max_familiarity if args.max_familiarity else 100
         args.min_variance = args.min_variance if args.min_variance else -100
         args.max_variance = args.max_variance if args.max_variance else 100
-        args.min_items = args.min_items if args.min_items else 1
-        args.max_items = args.max_items if args.max_items else 4
+        args.min_items = args.min_items if args.min_items else 0
+        args.max_items = args.max_items if args.max_items else 8
 
     with open(weight_file, "r", encoding='utf-8') as f:
         input_weights = json.load(f)
@@ -599,6 +603,8 @@ def main():
         input_weights['goal']['completionist']['weight'] = 0
         input_weights['accessibility']['none']['weight'] = 0
         input_weights['mode']['standard']['weight'] = 0
+        input_weights['hints']['off']['weight'] = 0
+        input_weights['mystery']['on']['weight'] = 0
 
     mystery_settings = make_mystery(input_weights, default_settings, args)
     if not mystery_settings:

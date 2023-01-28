@@ -1513,7 +1513,7 @@
             "length": 0,
             "execution": -1,
             "familiarity": -1,
-            "variance": 0,
+            "variance": -1,
             "expose": false
         },
         "Magic Powder": {
@@ -1588,7 +1588,7 @@
             "variance": 0,
             "expose": false
         },
-        "Red Shield": {
+        "Progressive Shield,Progressive Shield": {
             "weight": 1,
             "length": 0,
             "execution": 0,
@@ -1617,7 +1617,15 @@
             "length": 0,
             "execution": 0,
             "familiarity": -1,
-            "variance": 0,
+            "variance": -1,
+            "expose": false
+        },
+        "Rupees (20), Rupees (20), Rupees (20), Rupees (5), Rupee (1), Rupee (1), Rupee (1), Rupee (1)": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": -1,
             "expose": false
         },
         "Progressive Bow": {
@@ -1634,6 +1642,14 @@
             "execution": 0,
             "familiarity": 0,
             "variance": -1,
+            "expose": false
+        },
+        "Bombs (10)": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
             "expose": false
         },
         "Bomb Upgrade (+10)": {
