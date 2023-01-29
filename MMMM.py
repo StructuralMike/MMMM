@@ -258,7 +258,7 @@ def make_mystery(input_weights, default_settings, args):
             input_weights['algorithm']['major_only']['weight'] = 0
         if settings['goal'] == 'ganonhunt':
             input_weights['openpyramid']['on']['weight'] = 1
-            input_weights['openpyramid']['off']['weight'] = 1
+            input_weights['openpyramid']['off']['weight'] = 0
         if settings['goal'] == 'completionist':
             force_setting('accessibility', 'locations')
             force_setting('mystery', 'off')
