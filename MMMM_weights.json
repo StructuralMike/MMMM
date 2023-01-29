@@ -358,8 +358,8 @@
             "weight": 10,
             "length": 1,
             "execution": 4,
-            "familiarity": 1,
-            "variance": 0,
+            "familiarity": 2,
+            "variance": -1,
             "expose": true
         }
     },
@@ -401,16 +401,16 @@
         "hard": {
             "weight": 2,
             "length": 1,
-            "execution": 4,
-            "familiarity": 1,
+            "execution": 3,
+            "familiarity": 2,
             "variance": 0,
             "expose": false
         },
         "expert": {
             "weight": 0,
-            "length": 0,
-            "execution": 0,
-            "familiarity": 0,
+            "length": 1,
+            "execution": 4,
+            "familiarity": 3,
             "variance": 0,
             "expose": false
         }

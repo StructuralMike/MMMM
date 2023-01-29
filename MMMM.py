@@ -3,10 +3,9 @@ import argparse
 import random
 import copy
 import sys
-from statistics import stdev
-from statistics import mean
+import numpy as np
 
-MAX_ATTEMPTS = 1000
+MAX_ATTEMPTS = 1500
 
 # Non-potchecks
 NONDUNGEON = 93
@@ -49,35 +48,20 @@ def print_to_stdout(*a):
 
 def make_mystery(input_weights, default_settings, args):
     def within_limits(score: dict) -> bool:
-        if score['length'] < args.min_length:
-            return False 
-        if score['execution'] < args.min_execution:
-            return False 
-        if score['familiarity'] < args.min_familiarity:
-            return False 
-        if score['variance'] < args.min_variance:
-            return False 
-        if score['length'] > args.max_length:
-            return False 
-        if score['execution'] > args.max_execution:
-            return False 
-        if score['familiarity'] > args.max_familiarity:
-            return False 
-        if score['variance'] > args.max_variance:
-            return False 
+        for attr,min,max in attrs:
+            score_val = score[attr]
+            if score_val < min or score_val > max:
+                return False
         return True
    
     def roll_setting(setting_name: str):
         options = list(input_weights[setting_name].keys())
         weights = [input_weights[setting_name][option]['weight'] for option in options]
         if not weights:
-            return False
+            return
         choice = random.choices(options, weights=weights, k=1)[0]
-
-        score['length'] += input_weights[setting_name][choice]['length']
-        score['execution'] += input_weights[setting_name][choice]['execution']
-        score['familiarity'] += input_weights[setting_name][choice]['familiarity']
-        score['variance'] += input_weights[setting_name][choice]['variance']
+        for attr,_,_ in attrs:
+            score[attr] += input_weights[setting_name][choice][attr]
 
         if setting_name not in ['progressive', 'dungeon_counters', ]:
             if choice == 'on':
@@ -97,10 +81,10 @@ def make_mystery(input_weights, default_settings, args):
         pool_size = NONDUNGEON
         pool_size += DUNGEON
         pool_size += POTTERY[settings['pottery']]
-        if settings['shopsanity'] == 1:
-            pool_size += SHOPSANITY
         if settings['dropshuffle'] == 1:
             pool_size += KEYDROPS
+        if settings['shopsanity'] == 1:
+            pool_size += SHOPSANITY
         if settings['take_any'] != 'none':
             pool_size += TAKE_ANY
         return pool_size
@@ -136,19 +120,19 @@ def make_mystery(input_weights, default_settings, args):
 
         for i in range(500):
             bag = ['pool']*pool + ['junk']*(total-pool)
-            random.shuffle(bag)
+            np.random.shuffle(bag)
             accumulator = 0
-            checks = 0
-            for item in bag:
-                checks += 1
+            for checks,item in enumerate(bag):
                 if item == 'pool':
                     accumulator += 1
                     if accumulator == goal:
                         break
             time_per_run[i] = checks/cpm 
-       
-        length = int((mean(time_per_run)-100)/10)-2
-        variance = int((stdev(time_per_run)-3)*2)+1
+        
+        mean_time = np.mean(time_per_run)
+        std_dev = np.std(time_per_run)
+        length = int((mean_time-100)/10)-2
+        variance = int((std_dev-3)*2)+1
         return length, variance
 
     def triforcehunt() -> list:
@@ -179,59 +163,34 @@ def make_mystery(input_weights, default_settings, args):
 
     def better_than_current(new_points:dict) -> bool:
         delta = 0
-        if score['length'] < args.min_length:
-            delta += new_points['length']
-        if score['length'] > args.max_length:
-            delta -= new_points['length']
-        if score['length'] >= args.min_length and score['length'] <= args.max_length:
-            if new_points['length'] + score['length'] < args.min_length or score['length'] + new_points['length'] > args.max_length:
+        for attr,min,max in attrs:
+            score_val = score[attr] 
+            new_val = new_points[attr]
+            if score_val < min:
+                delta += new_val
+            elif score_val > max:
+                delta -= new_val
+            elif new_val + score_val < min or score_val + new_val > max:
                 return False
-
-        if score['execution'] < args.min_execution:
-            delta += new_points['execution']
-        if score['execution'] > args.max_execution:
-            delta -= new_points['execution']
-        if score['execution'] >= args.min_execution and score['execution'] <= args.max_execution:
-            if score['execution']+new_points['execution'] < args.min_execution or score['execution'] + new_points['execution'] > args.max_execution:
-                return False
-
-        if score['familiarity'] < args.min_familiarity:
-            delta += new_points['familiarity']
-        if score['familiarity'] > args.max_familiarity:
-            delta -= new_points['familiarity']
-        if score['familiarity'] >= args.min_familiarity and score['familiarity'] <= args.max_familiarity:
-            if score['familiarity']+new_points['familiarity'] < args.min_familiarity or score['familiarity'] + new_points['familiarity'] > args.max_familiarity:
-                return False
-
-        if score['variance'] < args.min_variance:
-            delta += new_points['variance']
-        if score['variance'] > args.max_variance:
-            delta -= new_points['variance']
-        if score['variance'] >= args.min_variance and score['variance'] <= args.max_variance:
-            if score['variance']+new_points['variance'] < args.min_variance or score['variance'] + new_points['variance'] > args.max_variance:
-                return False
-
         return delta > 0
 
     def item_within_limits(new_points:dict) -> bool:
-        if score['length'] + new_points['length'] < args.min_length or score['length'] + new_points['length'] > args.max_length:
-            return False
+        for attr,min,max in attrs:
+            eval = score[attr] + new_points[attr]
+            if eval < min or eval > max:
+                return False
+        return True 
 
-        if score['execution']+new_points['execution'] < args.min_execution or score['execution'] + new_points['execution'] > args.max_execution:
-            return False
-
-        if score['familiarity']+new_points['familiarity'] < args.min_familiarity or score['familiarity'] + new_points['familiarity'] > args.max_familiarity:
-            return False
-
-        if score['variance']+new_points['variance'] < args.min_variance or score['variance'] + new_points['variance'] > args.max_variance:
-            return False
-
-        return True
-
+    attrs = [
+        ('length', args.min_length, args.max_length),
+        ('execution', args.min_execution, args.max_execution),
+        ('familiarity', args.min_familiarity, args.max_familiarity),
+        ('variance', args.min_variance, args.max_variance)
+    ]
     cached_weights = copy.deepcopy(input_weights)
     attempts = 0
     while attempts <= MAX_ATTEMPTS:
-        if attempts > 100:
+        if attempts == 300:
             cached_weights['goal']['triforcehunt']['weight'] = 0
             cached_weights['goal']['ganonhunt']['weight'] = 0
         attempts += 1
@@ -239,12 +198,9 @@ def make_mystery(input_weights, default_settings, args):
         input_weights = copy.deepcopy(cached_weights)
         input_weights['algorithm']['vanilla_fill']['weight'] = 0
         startinventory = []
-        score = {
-            'length': 0,
-            'execution': 0,
-            'familiarity': 0,
-            'variance': 0
-        }
+        score = {}
+        for attr,_,_ in attrs:
+            score[attr] = 0
 
         roll_setting('logic')
         if settings['logic'] != 'noglitches':
@@ -257,8 +213,7 @@ def make_mystery(input_weights, default_settings, args):
         if settings['goal'] in ['triforcehunt', 'ganonhunt', 'trinity']:
             input_weights['algorithm']['major_only']['weight'] = 0
         if settings['goal'] == 'ganonhunt':
-            input_weights['openpyramid']['on']['weight'] = 1
-            input_weights['openpyramid']['off']['weight'] = 0
+            force_setting('openpyramid', 'on')
         if settings['goal'] == 'completionist':
             force_setting('accessibility', 'locations')
             force_setting('mystery', 'off')
@@ -316,7 +271,6 @@ def make_mystery(input_weights, default_settings, args):
             input_weights['take_any']['random']['familiarity'] = 0
             input_weights['take_any']['fixed']['familiarity'] = 0
 
-        # Decide how to roll GT crystals
         if settings['shuffle'] == 'vanilla' and settings['goal'] == 'ganon':
             max_gt = int(settings['crystals_ganon'])
             for key in input_weights['crystals_gt']:
@@ -414,7 +368,6 @@ def make_mystery(input_weights, default_settings, args):
         roll_setting('take_any')
         roll_setting('dropshuffle')
 
-        # Deal with triforce hunts
         if settings['goal'] in ['triforcehunt', 'ganonhunt']:
             tfh_weights_list = triforcehunt()
             if not tfh_weights_list:
@@ -432,7 +385,6 @@ def make_mystery(input_weights, default_settings, args):
             settings['triforce_goal'] = tfh_weights[0]
             settings['triforce_pool'] = tfh_weights[1]
  
-        # Deal with inventory
         if settings['pseudoboots'] == 1:
             input_weights['startinventory']['Pegasus Boots']['weight'] = 0
 
@@ -444,12 +396,10 @@ def make_mystery(input_weights, default_settings, args):
             if len(startinventory) >= args.max_items or within_limits(score):
                 break
             if better_than_current(item_weights) and random.random() > 0.25:
-                score['length'] += item_weights['length']
-                score['execution'] += item_weights['execution']
-                score['familiarity'] += item_weights['familiarity']
-                score['variance'] += item_weights['variance']
+                for attr,_,_ in attrs:
+                    score[attr] += item_weights[attr]
                 startinventory.append(item)
-        
+
         # Add minimum amount of items and bonus items
         start_item_options = [item for item in start_item_options if item not in startinventory]
         random.shuffle(start_item_options)
@@ -457,18 +407,14 @@ def make_mystery(input_weights, default_settings, args):
             item_weights = input_weights['startinventory'][item]
             if len(startinventory) < args.min_items:
                 if item_within_limits(item_weights):
-                    score['length'] += item_weights['length']
-                    score['execution'] += item_weights['execution']
-                    score['familiarity'] += item_weights['familiarity']
-                    score['variance'] += item_weights['variance']
+                    for attr,_,_ in attrs:
+                        score[attr] += item_weights[attr]
                     startinventory.append(item)
             elif len(startinventory) < args.max_items and item_within_limits(item_weights):
                 if random.random() < 0.5:
                     break
-                score['length'] += item_weights['length']
-                score['execution'] += item_weights['execution']
-                score['familiarity'] += item_weights['familiarity']
-                score['variance'] += item_weights['variance']
+                for attr,_,_ in attrs:
+                    score[attr] += item_weights[attr]
                 startinventory.append(item)
 
         if 'Pegasus Boots' in startinventory:
