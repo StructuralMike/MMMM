@@ -137,28 +137,29 @@ def make_mystery(input_weights, default_settings, args):
 
     def triforcehunt() -> list:
         roll_weights = []
-        min_pool_size = determine_mandatory_pool_size()
-        pool_size = determine_pool_size()
-        pool_space = pool_size - min_pool_size
-        basefraction = pool_size/216
+        minimum_pool_size = determine_mandatory_pool_size()
+        current_pool_size = determine_pool_size()
+        pool_space = current_pool_size - minimum_pool_size
+        base_fraction = current_pool_size / 216
+        
+        tfh_goal_weights = input_weights.get('tfh_goal', {})
+        tfh_extra_pool_weights = input_weights.get('tfh_extra_pool', {})
 
-        # Determine item pool size and max amount of possible locations for TF-pieces
-        for tf_goalfraction, goalpoints in input_weights['tfh_goal'].items():
-            if random.random() < goalpoints['weight']:
-                continue
-            tf_goal = int(int(tf_goalfraction)*basefraction * random.uniform(0.85,1.15))
-            for tf_pooldelta, poolpoints in input_weights['tfh_extra_pool'].items():
-                tf_pool = int(tf_goal * (1+int(tf_pooldelta)/100) + 1)
+        rolls = [int(tf_goalfraction) for tf_goalfraction, goalpoints in tfh_goal_weights.items() if random.random() < goalpoints['weight']]
+        for tf_goalfraction in rolls:
+            tf_goal = int(tf_goalfraction * base_fraction * random.uniform(0.85, 1.15))
+            for tf_pooldelta, poolpoints in tfh_extra_pool_weights.items():
+                tf_pool = int(tf_goal * (1 + int(tf_pooldelta) / 100) + 1)
                 if tf_pool <= tf_goal:
                     continue
-                if pool_space-tf_pool < 50 or tf_pool/pool_space > 0.8:
+                if pool_space - tf_pool < 50 or tf_pool / pool_space > 0.8:
                     continue
                 if random.random() > poolpoints['weight']:
                     continue
-                length, variance = simulate_tfh(tf_goal, tf_pool, pool_size)
+                length, variance = simulate_tfh(tf_goal, tf_pool, current_pool_size)
                 familiarity = poolpoints['familiarity']
                 execution = poolpoints['execution']
-                roll_weights.append([tf_goal,tf_pool,length,execution,familiarity,variance])
+                roll_weights.append([tf_goal, tf_pool, length, execution, familiarity, variance])
         return roll_weights
 
     def better_than_current(new_points:dict) -> bool:
@@ -247,6 +248,7 @@ def make_mystery(input_weights, default_settings, args):
             force_setting('shufflelinks', 'off')
             force_setting('shuffletavern', 'off')
             force_setting('overworld_map', 'default')
+            force_setting('take_any', 'none')
         if settings['shuffle'] == 'lean':
             input_weights['pottery']['lottery']['weight'] = 0
             input_weights['pottery']['reduced']['weight'] = 0
