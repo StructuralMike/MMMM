@@ -4,23 +4,32 @@ logic:
 
 goal:
   - If ganonhunt and not entrance, pyramid is open or GT is 0 crystals
-  - If ganonhunt and entrance, pyramid is open
-  - If ganon and not entrance, GT crystals is <= ganon crystals 
+  - If ganonhunt and entrance, ganon is vanilla and pyramid is open
+  - If ganon (crystals + aga2) and not entrance, GT crystals is always <= ganon crystals
+  - If fast ganon, and not entrance, GT crystals is always >= ganon crystals
+  - Trinity won't roll by default
+  - If completionist, accessibility = locations and collectionrate counter is on
 
 mode:
-  - If standard, boots hint is rolled.
+  - If standard, boots hint is rolled, and insanity ER is off.
   - If standard enemizer, sword is assured.
+  - If standard universal keys, you start with 3 keys.
 
 ohko:
   - If ohko, enemizer is off
 
+enemizer:
+  - If enemies are shuffled, enemy health cannot be hard or expert.
+
 entrance:
+  - If NOT entrance, take any caves are off.
+  - If lean entrance, pottery can only be none, keys, or dungeons. And shopsanity is off.
   - If inverted entrance, links house is always shuffled
   - If insanity entrance, bombbag is always off and you have a starting flute.
 
 doors:
   - If doors, some wild dungeon items are guaranteed
-  - Dungeon counters are always on 
+  - If doors, dungeon counters are always on 
 
 pottery:
   - If any dungeon pottery is on, 'dungeon_counter' is on.
@@ -34,21 +43,21 @@ dungeon_items:
 
 triforcehunt:
   - Triforce Goal is rolled as a fraction of the available item pool. I.e 30 = 30 in 216, but in pottery lottery 30 = 152
-  - The Goal options are 30, 40, 50, 60
+  - The Goal options are 30, 40, 50, or 60 fractions
   - Triforce extra Pool is rolled as a % on top of the Goal. I.e. 10 = 3 extra pieces with a 30 goal in a 216 pool.
   - The extra pool options are 10%, 25%, 40%, 55%, 70%
-  - Triforcehunt can be Ganonhunt = get the pieces and then kill ganon. You know this is the case when Muradahla is not present
+  - Triforcehunt can be Ganonhunt, which means get the pieces and then kill ganon. You know this is the case when Muradahla is not present
 
 startinventory:
  - There is a minimum and maximum item count.
- - Items are first rolled to try and put the settings within the points intervals
+ - Items are first rolled to attempt to put the settings within the points intervals
  - If the poins are within the point intervals, there is a chance to roll bonus items
- - If pseudoboots is on, you don't have starting boots. 
  'An item' is a fluid concept. Some examples of "single" items in the weights
     - 3 Bosshearts
     - 2 Mail upgrades
-    - Book + Mushroom + Shovel
-    - 420 Rupees 
+    - Mushroom + Shovel
+    - 420 Rupees
+    - Ether + Quake
 
 
 metadata presented after rolling:

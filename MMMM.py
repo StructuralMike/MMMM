@@ -56,12 +56,15 @@ def make_mystery(input_weights, default_settings, args):
         return True
    
     def roll_setting(setting_name: str) -> None:
-        """Roll a setting based on the input weights"""
+        """Randomly select a setting based on its weights and update the score accordingly."""
         options = list(input_weights[setting_name].keys())
         weights = [input_weights[setting_name][option]['weight'] for option in options]
+
         if not weights:
             return
+
         choice = random.choices(options, weights=weights, k=1)[0]
+
         for attr,_,_ in attrs:
             score[attr] += input_weights[setting_name][choice][attr]
 
@@ -70,6 +73,7 @@ def make_mystery(input_weights, default_settings, args):
                 choice = 1
             if choice == 'off':
                 choice = 0
+
         settings[setting_name] = choice
 
     def force_setting(setting_name: str, choice) -> None:
@@ -120,8 +124,10 @@ def make_mystery(input_weights, default_settings, args):
             cpm = 4
         else:
             cpm = 5.3
+
         if settings['door_shuffle'] != 'vanilla':
             cpm = cpm*0.9
+
         time_per_run = [None]*500
 
         for i in range(500):
@@ -139,6 +145,7 @@ def make_mystery(input_weights, default_settings, args):
         std_dev = np.std(time_per_run)
         length = int((mean_time-100)/10)-2
         variance = int((std_dev-3)*2)+1
+
         return length, variance
 
     def triforcehunt() -> list:
@@ -170,23 +177,28 @@ def make_mystery(input_weights, default_settings, args):
 
     def better_than_current(new_points:dict) -> bool:
         """Determine if the new points are closer to the target than the current score"""
-        delta = 0
-        for attr,min,max in attrs:
-            score_val = score[attr] 
-            new_val = new_points[attr]
-            if score_val < min:
-                delta += new_val
-            elif score_val > max:
-                delta -= new_val
-            elif new_val + score_val < min or score_val + new_val > max:
+        delta_score = 0
+
+        for attr, attr_min, attr_max in attrs:
+            current_score = score[attr] 
+            new_score = new_points[attr]
+
+            if current_score < attr_min:
+                delta_score += new_score
+
+            elif current_score > attr_max:
+                delta_score -= new_score
+
+            elif new_score + current_score < attr_min or current_score + new_score > attr_max:
                 return False
-        return delta > 0
+
+        return delta_score > 0
 
     def item_within_limits(new_points:dict) -> bool:
         """Determine if the new points are within the limits of the input weights"""
-        for attr,min,max in attrs:
-            eval = score[attr] + new_points[attr]
-            if eval < min or eval > max:
+        for attr, attr_min, attr_max in attrs:
+            new_score = score[attr] + new_points[attr]
+            if new_score < attr_min or new_score > attr_max:
                 return False
         return True 
 
@@ -234,7 +246,6 @@ def make_mystery(input_weights, default_settings, args):
         roll_setting('mode')
         if settings['mode'] == 'standard':
             input_weights['boots_hint']['on']['weight'] = input_weights['boots_hint']['off']['weight']
-            input_weights['startinventory']['Ocarina']['weight'] = 0
             input_weights['shuffle']['insanity']['weight'] = 0
              
         roll_setting('timer')
@@ -291,6 +302,8 @@ def make_mystery(input_weights, default_settings, args):
             roll_setting('crystals_gt')
         elif settings['shuffle'] != 'vanilla' and settings['goal'] == 'ganonhunt' and settings['openpyramid'] == 0:
             settings['crystals_gt'] = "0"
+        elif settings['shuffle'] == 'vanilla' and settings['goal'] == 'crystals':
+            settings['crystals_gt'] = str(random.randint(int(settings['crystals_ganon']),7))
         else:
             settings['crystals_gt'] = str(random.randint(0,7))
 
@@ -349,7 +362,7 @@ def make_mystery(input_weights, default_settings, args):
         roll_setting('shopsanity')
 
         roll_setting('mystery')
-        if (settings['shopsanity'] == 0 and settings['pottery'] == 'none'):
+        if settings['shopsanity'] == 0 and settings['pottery'] == 'none':
             force_setting('collection_rate', 'off')
         roll_setting('collection_rate')
 
