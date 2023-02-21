@@ -43,18 +43,20 @@ BOSSHEARTS = 11
 SHOPUPGRADES = 2 + 3
 RETRO_ARROWS = 3
 
-def print_to_stdout(*a):
+def print_to_stdout(*a) -> None:
     print(*a, file=sys.stdout)
 
 def make_mystery(input_weights, default_settings, args):
     def within_limits(score: dict) -> bool:
+        """Check if the score is within the limits of the input weights"""
         for attr,min,max in attrs:
             score_val = score[attr]
             if score_val < min or score_val > max:
                 return False
         return True
    
-    def roll_setting(setting_name: str):
+    def roll_setting(setting_name: str) -> None:
+        """Roll a setting based on the input weights"""
         options = list(input_weights[setting_name].keys())
         weights = [input_weights[setting_name][option]['weight'] for option in options]
         if not weights:
@@ -70,7 +72,8 @@ def make_mystery(input_weights, default_settings, args):
                 choice = 0
         settings[setting_name] = choice
 
-    def force_setting(setting_name: str, choice):
+    def force_setting(setting_name: str, choice) -> None:
+        """Force a setting to a specific value"""
         for key in input_weights[setting_name]:
             if key == choice:
                 input_weights[setting_name][key]['weight'] = 1
@@ -78,6 +81,7 @@ def make_mystery(input_weights, default_settings, args):
                 input_weights[setting_name][key]['weight'] = 0
 
     def determine_pool_size() -> int:
+        """Determine the size of the item pool based on the settings"""
         pool_size = NONDUNGEON
         pool_size += DUNGEON
         pool_size += POTTERY[settings['pottery']]
@@ -90,6 +94,7 @@ def make_mystery(input_weights, default_settings, args):
         return pool_size
     
     def determine_mandatory_pool_size() -> int:
+        """Determine the size of the mandatory item pool based on the settings"""
         mandatory_pool_size = INVENTORY + MAPSANDCOMPASSES + BIGKEYS + SMALLKEYS + BOSSHEARTS
         if settings['shopsanity'] == 1:
             mandatory_pool_size += SHOPUPGRADES
@@ -103,7 +108,8 @@ def make_mystery(input_weights, default_settings, args):
             mandatory_pool_size += POTTERY['keys']
         return mandatory_pool_size        
 
-    def simulate_tfh(goal:int, pool:int, total:int):
+    def simulate_tfh(goal:int, pool:int, total:int) -> tuple:
+        """Simulate a triforce hunt run to estimate the average time to completion"""
         if total < 300:
             cpm = 1.7
             if settings['shuffle'] != 'vanilla':
@@ -163,6 +169,7 @@ def make_mystery(input_weights, default_settings, args):
         return roll_weights
 
     def better_than_current(new_points:dict) -> bool:
+        """Determine if the new points are closer to the target than the current score"""
         delta = 0
         for attr,min,max in attrs:
             score_val = score[attr] 
@@ -176,6 +183,7 @@ def make_mystery(input_weights, default_settings, args):
         return delta > 0
 
     def item_within_limits(new_points:dict) -> bool:
+        """Determine if the new points are within the limits of the input weights"""
         for attr,min,max in attrs:
             eval = score[attr] + new_points[attr]
             if eval < min or eval > max:
@@ -205,7 +213,6 @@ def make_mystery(input_weights, default_settings, args):
 
         roll_setting('logic')
         if settings['logic'] != 'noglitches':
-            input_weights['algorithm']['dungeon_only']['weight'] = 0
             force_setting('pseudoboots', 'off')
             startinventory.append('Pegasus Boots')
             input_weights['startinventory']['Pegasus Boots']['weight'] = 0
@@ -458,7 +465,7 @@ def main():
     parser.add_argument('--max_variance', help='-15 to 15', type=int)
     parser.add_argument('--min_items', help='', type=int)
     parser.add_argument('--max_items', help='', type=int)
-    parser.add_argument('--multi', help='', action='store_true')
+    parser.add_argument('--multi', help='This flag does some minimal balancing for multiworlds', action='store_true')
 
     args = parser.parse_args()
 
@@ -467,61 +474,26 @@ def main():
     output_file = args.o if args.o else "MMMM_mystery.json"
 
     args.preset = args.preset if args.preset else 'friendly'
-    if args.preset == 'friendly':
-        args.min_length = args.min_length if args.min_length else -6
-        args.max_length = args.max_length if args.max_length else 2
-        args.min_execution = args.min_execution if args.min_execution else -5
-        args.max_execution = args.max_execution if args.max_execution else 3
-        args.min_familiarity = args.min_familiarity if args.min_familiarity else -5
-        args.max_familiarity = args.max_familiarity if args.max_familiarity else 5
-        args.min_variance = args.min_variance if args.min_variance else -4
-        args.max_variance = args.max_variance if args.max_variance else 5
-        args.min_items = args.min_items if args.min_items else 1
-        args.max_items = args.max_items if args.max_items else 4
-    if args.preset == 'notslow':
-        args.min_length = args.min_length if args.min_length else -6
-        args.max_length = args.max_length if args.max_length else 0
-        args.min_execution = args.min_execution if args.min_execution else -5
-        args.max_execution = args.max_execution if args.max_execution else 5
-        args.min_familiarity = args.min_familiarity if args.min_familiarity else -3
-        args.max_familiarity = args.max_familiarity if args.max_familiarity else 15
-        args.min_variance = args.min_variance if args.min_variance else -5
-        args.max_variance = args.max_variance if args.max_variance else 5
-        args.min_items = args.min_items if args.min_items else 0
-        args.max_items = args.max_items if args.max_items else 5
-    if args.preset == 'complex':
-        args.min_length = args.min_length if args.min_length else 3
-        args.max_length = args.max_length if args.max_length else 12
-        args.min_execution = args.min_execution if args.min_execution else 0
-        args.max_execution = args.max_execution if args.max_execution else 6
-        args.min_familiarity = args.min_familiarity if args.min_familiarity else 8
-        args.max_familiarity = args.max_familiarity if args.max_familiarity else 20
-        args.min_variance = args.min_variance if args.min_variance else -8
-        args.max_variance = args.max_variance if args.max_variance else 3
-        args.min_items = args.min_items if args.min_items else 0
-        args.max_items = args.max_items if args.max_items else 3
-    if args.preset == 'ordeal':
-        args.min_length = args.min_length if args.min_length else 10
-        args.max_length = args.max_length if args.max_length else 30
-        args.min_execution = args.min_execution if args.min_execution else 4
-        args.max_execution = args.max_execution if args.max_execution else 10
-        args.min_familiarity = args.min_familiarity if args.min_familiarity else 15
-        args.max_familiarity = args.max_familiarity if args.max_familiarity else 30
-        args.min_variance = args.min_variance if args.min_variance else -8
-        args.max_variance = args.max_variance if args.max_variance else 1
-        args.min_items = args.min_items if args.min_items else 0
-        args.max_items = args.max_items if args.max_items else 2
-    if args.preset == 'chaos':
-        args.min_length = args.min_length if args.min_length else -100
-        args.max_length = args.max_length if args.max_length else 100
-        args.min_execution = args.min_execution if args.min_execution else -100
-        args.max_execution = args.max_execution if args.max_execution else 100
-        args.min_familiarity = args.min_familiarity if args.min_familiarity else -100
-        args.max_familiarity = args.max_familiarity if args.max_familiarity else 100
-        args.min_variance = args.min_variance if args.min_variance else -100
-        args.max_variance = args.max_variance if args.max_variance else 100
-        args.min_items = args.min_items if args.min_items else 0
-        args.max_items = args.max_items if args.max_items else 8
+
+    presets = {
+        'friendly': {'min_length': -6, 'max_length': 2, 'min_execution': -5, 'max_execution': 3, 'min_familiarity': -5, 'max_familiarity': 5, 'min_variance': -4, 'max_variance': 5, 'min_items': 1, 'max_items': 5},
+        'notslow': {'min_length': -6, 'max_length': 0, 'min_execution': -5, 'max_execution': 5, 'min_familiarity': -3, 'max_familiarity': 15, 'min_variance': -5, 'max_variance': 5, 'min_items': 0, 'max_items': 4},
+        'complex': {'min_length': 3, 'max_length': 12, 'min_execution': 0, 'max_execution': 6, 'min_familiarity': 8, 'max_familiarity': 20, 'min_variance': -8, 'max_variance': 3, 'min_items': 0, 'max_items': 3},
+        'ordeal': {'min_length': 10, 'max_length': 30, 'min_execution': 4, 'max_execution': 10, 'min_familiarity': 15, 'max_familiarity': 30, 'min_variance': -8, 'max_variance': 1, 'min_items': 0, 'max_items': 2},
+        'chaos':{'min_length': -100, 'max_length': 100, 'min_execution': -100, 'max_execution': 100, 'min_familiarity': -100, 'max_familiarity': 100, 'min_variance': -100, 'max_variance': 100, 'min_items': 0, 'max_items': 8}
+    }
+
+    preset = presets.get(args.preset, {})
+    args.min_length = args.min_length if args.min_length else preset.get('min_length', 0)
+    args.max_length = args.max_length if args.max_length else preset.get('max_length', 0)
+    args.min_execution = args.min_execution if args.min_execution else preset.get('min_execution', 0)
+    args.max_execution = args.max_execution if args.max_execution else preset.get('max_execution', 0)
+    args.min_familiarity = args.min_familiarity if args.min_familiarity else preset.get('min_familiarity', 0)
+    args.max_familiarity = args.max_familiarity if args.max_familiarity else preset.get('max_familiarity', 0)
+    args.min_variance = args.min_variance if args.min_variance else preset.get('min_variance', 0)
+    args.max_variance = args.max_variance if args.max_variance else preset.get('max_variance', 0)
+    args.min_items = args.min_items if args.min_items else preset.get('min_items', 0)
+    args.max_items = args.max_items if args.max_items else preset.get('max_items', 0)
 
     with open(weight_file, "r", encoding='utf-8') as f:
         input_weights = json.load(f)
@@ -552,7 +524,9 @@ def main():
         input_weights['accessibility']['none']['weight'] = 0
         input_weights['mode']['standard']['weight'] = 0
         input_weights['hints']['off']['weight'] = 0
+        input_weights['hints']['on']['weight'] = 1
         input_weights['mystery']['on']['weight'] = 0
+        input_weights['mystery']['off']['weight'] = 1
 
     mystery_settings = make_mystery(input_weights, default_settings, args)
     if not mystery_settings:
