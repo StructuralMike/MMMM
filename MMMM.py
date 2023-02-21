@@ -397,6 +397,9 @@ def make_mystery(input_weights, default_settings, args):
         if settings['pseudoboots'] == 1:
             input_weights['startinventory']['Pegasus Boots']['weight'] = 0
 
+        if settings['mode'] == 'standard' and settings['keyshuffle'] == 'universal':
+            startinventory.append('Small Key (Universal),Small Key (Universal),Small Key (Universal)')
+
         # Add items that puts the score within limits
         start_item_options = [item for item in input_weights['startinventory'].keys() if input_weights['startinventory'][item]['weight'] > 0 and item not in startinventory]
         random.shuffle(start_item_options)
