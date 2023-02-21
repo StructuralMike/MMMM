@@ -5,7 +5,7 @@ import copy
 import sys
 import numpy as np
 
-MAX_ATTEMPTS = 1500
+MAX_ATTEMPTS = 2000
 
 # Non-potchecks
 NONDUNGEON = 93
@@ -252,6 +252,9 @@ def make_mystery(input_weights, default_settings, args):
         if settings['timer'] != 'none':
             force_setting('shuffleenemies', 'none')
             force_setting('shufflebosses', 'none')
+            input_weights['pottery']['dungeon']['weight'] = 0
+            input_weights['pottery']['reduced']['weight'] = 0
+            input_weights['pottery']['lottery']['weight'] = 0
 
         roll_setting('shuffleenemies')
         if settings['shuffleenemies'] != 'none' and settings['mode'] == 'standard':
@@ -495,7 +498,7 @@ def main():
         'friendly': {'min_length': -6, 'max_length': 2, 'min_execution': -5, 'max_execution': 3, 'min_familiarity': -5, 'max_familiarity': 5, 'min_variance': -4, 'max_variance': 5, 'min_items': 1, 'max_items': 5},
         'notslow': {'min_length': -6, 'max_length': 0, 'min_execution': -5, 'max_execution': 5, 'min_familiarity': -3, 'max_familiarity': 15, 'min_variance': -5, 'max_variance': 5, 'min_items': 0, 'max_items': 4},
         'complex': {'min_length': 3, 'max_length': 12, 'min_execution': 0, 'max_execution': 6, 'min_familiarity': 8, 'max_familiarity': 20, 'min_variance': -8, 'max_variance': 3, 'min_items': 0, 'max_items': 3},
-        'ordeal': {'min_length': 10, 'max_length': 30, 'min_execution': 4, 'max_execution': 10, 'min_familiarity': 15, 'max_familiarity': 30, 'min_variance': -8, 'max_variance': 1, 'min_items': 0, 'max_items': 2},
+        'ordeal': {'min_length': 13, 'max_length': 25, 'min_execution': 4, 'max_execution': 11, 'min_familiarity': 15, 'max_familiarity': 30, 'min_variance': -8, 'max_variance': 1, 'min_items': 0, 'max_items': 2},
         'chaos':{'min_length': -100, 'max_length': 100, 'min_execution': -100, 'max_execution': 100, 'min_familiarity': -100, 'max_familiarity': 100, 'min_variance': -100, 'max_variance': 100, 'min_items': 0, 'max_items': 8}
     }
 

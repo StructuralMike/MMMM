@@ -17,6 +17,7 @@ mode:
 
 ohko:
   - If ohko, enemizer is off
+  - If ohko, pottery can't be dungeons, reduced, or lottery
 
 enemizer:
   - If enemies are shuffled, enemy health cannot be hard or expert.
