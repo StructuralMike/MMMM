@@ -68,7 +68,7 @@ def make_mystery(input_weights, default_settings, args):
         for attr,_,_ in attrs:
             score[attr] += input_weights[setting_name][choice][attr]
 
-        if setting_name not in ['progressive', 'dungeon_counters', ]:
+        if setting_name not in ['progressive', 'dungeon_counters', 'openpyramid']:
             if choice == 'on':
                 choice = 1
             if choice == 'off':
@@ -247,6 +247,7 @@ def make_mystery(input_weights, default_settings, args):
         if settings['mode'] == 'standard':
             input_weights['boots_hint']['on']['weight'] = input_weights['boots_hint']['off']['weight']
             input_weights['shuffle']['insanity']['weight'] = 0
+            force_setting('flute_mode', 'normal')
              
         roll_setting('timer')
         if settings['timer'] != 'none':
@@ -423,7 +424,7 @@ def make_mystery(input_weights, default_settings, args):
             item_weights = input_weights['startinventory'][item]
             if len(startinventory) >= args.max_items or within_limits(score):
                 break
-            if better_than_current(item_weights) and random.random() > 0.25:
+            if better_than_current(item_weights) and random.random() > 0.40:
                 for attr,_,_ in attrs:
                     score[attr] += item_weights[attr]
                 startinventory.append(item)
@@ -496,7 +497,7 @@ def main():
 
     presets = {
         'friendly': {'min_length': -6, 'max_length': 2, 'min_execution': -5, 'max_execution': 3, 'min_familiarity': -5, 'max_familiarity': 5, 'min_variance': -4, 'max_variance': 5, 'min_items': 1, 'max_items': 5},
-        'notslow': {'min_length': -6, 'max_length': 0, 'min_execution': -5, 'max_execution': 5, 'min_familiarity': -3, 'max_familiarity': 15, 'min_variance': -5, 'max_variance': 5, 'min_items': 0, 'max_items': 4},
+        'notslow': {'min_length': -6, 'max_length': 0, 'min_execution': -5, 'max_execution': 5, 'min_familiarity': -3, 'max_familiarity': 15, 'min_variance': -5, 'max_variance': 5, 'min_items': 0, 'max_items': 3},
         'complex': {'min_length': 3, 'max_length': 12, 'min_execution': 0, 'max_execution': 6, 'min_familiarity': 8, 'max_familiarity': 20, 'min_variance': -8, 'max_variance': 3, 'min_items': 0, 'max_items': 3},
         'ordeal': {'min_length': 13, 'max_length': 25, 'min_execution': 4, 'max_execution': 11, 'min_familiarity': 15, 'max_familiarity': 30, 'min_variance': -8, 'max_variance': 1, 'min_items': 0, 'max_items': 2},
         'chaos':{'min_length': -100, 'max_length': 100, 'min_execution': -100, 'max_execution': 100, 'min_familiarity': -100, 'max_familiarity': 100, 'min_variance': -100, 'max_variance': 100, 'min_items': 0, 'max_items': 8}

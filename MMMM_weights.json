@@ -19,7 +19,7 @@
     },
     "bombbag": {
         "on": {
-            "weight": 20,
+            "weight": 25,
             "length": 1,
             "execution": 1,
             "familiarity": 5,
@@ -27,7 +27,7 @@
             "expose": true
         },
         "off": {
-            "weight": 80,
+            "weight": 75,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
@@ -133,7 +133,7 @@
     },
     "goal": {
         "ganon": {
-            "weight": 40,
+            "weight": 45,
             "length": 0,
             "execution": 0,
             "familiarity": -1,
@@ -157,7 +157,7 @@
             "expose": true
         },
         "triforcehunt": {
-            "weight": 15,
+            "weight": 10,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
@@ -173,7 +173,7 @@
             "expose": false
         },
         "crystals": {
-            "weight": 20,
+            "weight": 25,
             "length": -1,
             "execution": 0,
             "familiarity": 0,
@@ -181,7 +181,7 @@
             "expose": true
         },
         "ganonhunt": {
-            "weight": 15,
+            "weight": 10,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
@@ -391,7 +391,7 @@
     },
     "item_functionality": {
         "normal": {
-            "weight": 98,
+            "weight": 97,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
@@ -399,7 +399,7 @@
             "expose": false
         },
         "hard": {
-            "weight": 2,
+            "weight": 3,
             "length": 1,
             "execution": 3,
             "familiarity": 2,
@@ -563,7 +563,7 @@
     },
     "algorithm": {
         "balanced": {
-            "weight": 90,
+            "weight": 100,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
@@ -745,7 +745,7 @@
     },
     "shuffle": {
         "vanilla": {
-            "weight": 45,
+            "weight": 55,
             "length": 0,
             "execution": 0,
             "familiarity": -1,
@@ -753,7 +753,7 @@
             "expose": true
         },
         "restricted": {
-            "weight": 10,
+            "weight": 13,
             "length": 3,
             "execution": 0,
             "familiarity": 2,
@@ -777,7 +777,7 @@
             "expose": true
         },
         "lean": {
-            "weight": 14,
+            "weight": 0,
             "length": 5,
             "execution": 2,
             "familiarity": 3,
@@ -839,7 +839,7 @@
     },
     "shuffleenemies": {
         "none": {
-            "weight": 80,
+            "weight": 75,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
@@ -847,9 +847,9 @@
             "expose": true
         },
         "shuffled": {
-            "weight": 20,
+            "weight": 25,
             "length": 1,
-            "execution": 4,
+            "execution": 3,
             "familiarity": 3,
             "variance": 1,
             "expose": true
@@ -865,7 +865,7 @@
     },
     "shufflebosses": {
         "none": {
-            "weight": 75,
+            "weight": 70,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
@@ -881,15 +881,15 @@
             "expose": false
         },
         "unique": {
-            "weight": 0,
+            "weight": 3,
             "length": 0,
-            "execution": 0,
-            "familiarity": 0,
-            "variance": 0,
+            "execution": 1,
+            "familiarity": 1,
+            "variance": 1,
             "expose": false
         },
         "full": {
-            "weight": 25,
+            "weight": 27,
             "length": 0,
             "execution": 1,
             "familiarity": 1,
@@ -1197,7 +1197,7 @@
             "expose": true
         },
         "cave": {
-            "weight": 5,
+            "weight": 0,
             "length": 2,
             "execution": 0,
             "familiarity": 4,
@@ -1205,7 +1205,7 @@
             "expose": true
         },
         "cavekeys": {
-            "weight": 5,
+            "weight": 10,
             "length": 3,
             "execution": 0,
             "familiarity": 4,
@@ -1213,7 +1213,7 @@
             "expose": true
         },
         "reduced": {
-            "weight": 10,
+            "weight": 0,
             "length": 3,
             "execution": 0,
             "familiarity": 4,
@@ -1237,7 +1237,7 @@
             "expose": false
         },
         "lottery": {
-            "weight": 20,
+            "weight": 30,
             "length": 4,
             "execution": 0,
             "familiarity": 5,
