@@ -149,11 +149,11 @@
             "expose": true
         },
         "dungeons": {
-            "weight": 5,
+            "weight": 10,
             "length": 2,
             "execution": 0,
             "familiarity": 0,
-            "variance": -1,
+            "variance": -3,
             "expose": true
         },
         "triforcehunt": {
@@ -181,7 +181,7 @@
             "expose": true
         },
         "ganonhunt": {
-            "weight": 10,
+            "weight": 5,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
@@ -782,7 +782,7 @@
             "execution": 2,
             "familiarity": 3,
             "variance": 4,
-            "expose": true
+            "expose": false
         }
     },
     "overworld_map": {

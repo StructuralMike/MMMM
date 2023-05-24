@@ -234,10 +234,12 @@ def make_mystery(input_weights, default_settings, args):
             input_weights['algorithm']['major_only']['weight'] = 0
         if settings['goal'] == 'ganonhunt':
             force_setting('openpyramid', 'on')
+            force_setting('shuffle', 'vanilla')
         if settings['goal'] == 'completionist':
             force_setting('accessibility', 'locations')
             force_setting('mystery', 'off')
             force_setting('collection_rate', 'on')
+            force_setting('timer', 'none')
         if settings['goal'] in ('ganon', 'crystals'):
             roll_setting('crystals_ganon')
         if settings['goal'] == 'crystals':
@@ -440,7 +442,7 @@ def make_mystery(input_weights, default_settings, args):
                         score[attr] += item_weights[attr]
                     startinventory.append(item)
             elif len(startinventory) < args.max_items and item_within_limits(item_weights):
-                if random.random() < 0.5:
+                if random.random() < 0.65:
                     break
                 for attr,_,_ in attrs:
                     score[attr] += item_weights[attr]
