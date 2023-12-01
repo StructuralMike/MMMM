@@ -21,6 +21,7 @@ ohko:
 
 enemizer:
   - If enemies are shuffled, enemy health cannot be hard or expert.
+  - If enemies are shuffled, enemy drop logic is set to "none"
 
 entrance:
   - If NOT entrance, take any caves are off.
@@ -31,6 +32,7 @@ entrance:
 doors:
   - If doors, some wild dungeon items are guaranteed
   - If doors, dungeon counters are always on 
+  - If doors, key_logic_algorithm is set to "partial"
 
 pottery:
   - If any dungeon pottery is on, 'dungeon_counter' is on.
