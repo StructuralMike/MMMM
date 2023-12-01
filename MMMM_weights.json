@@ -22,7 +22,7 @@
             "weight": 25,
             "length": 1,
             "execution": 1,
-            "familiarity": 5,
+            "familiarity": 4,
             "variance": 3,
             "expose": true
         },
@@ -837,6 +837,32 @@
             "expose": false
         }
     },
+    "any_enemy_logic": {
+        "none": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "allow_drops": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "allow_all": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
     "shuffleenemies": {
         "none": {
             "weight": 75,
@@ -1103,7 +1129,7 @@
     },
     "door_type_mode": {
         "original": {
-            "weight": 85,
+            "weight": 70,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
@@ -1111,7 +1137,7 @@
             "expose": false
         },
         "big": {
-            "weight": 10,
+            "weight": 25,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
@@ -1127,6 +1153,40 @@
             "expose": false
         },
         "chaos": {
+            "weight": 0,
+            "length": 2,
+            "execution": 0,
+            "familiarity": 2,
+            "variance": 2,
+            "expose": false
+        }
+    },
+    "trap_door_mode": {
+        "vanilla": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "optional": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "boss": {
+            "weight": 0,
+            "length": 1,
+            "execution": 0,
+            "familiarity": 1,
+            "variance": 1,
+            "expose": false
+        },
+        "oneway": {
             "weight": 0,
             "length": 2,
             "execution": 0,
@@ -1154,7 +1214,7 @@
         }
     },
     "dropshuffle": {
-        "on": {
+        "keys": {
             "weight": 0,
             "length": 0,
             "execution": 0,
@@ -1162,7 +1222,7 @@
             "variance": 0,
             "expose": false
         },
-        "off": {
+        "none": {
             "weight": 1,
             "length": 0,
             "execution": 0,
@@ -1272,6 +1332,24 @@
         },
         "pickup": {
             "weight": 50,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        }
+    },
+    "key_logic_algorithm": {
+        "default": {
+            "weight": 1,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
+        "partial": {
+            "weight": 0,
             "length": 0,
             "execution": 0,
             "familiarity": 0,

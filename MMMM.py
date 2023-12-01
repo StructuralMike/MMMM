@@ -68,7 +68,7 @@ def make_mystery(input_weights, default_settings, args):
         for attr,_,_ in attrs:
             score[attr] += input_weights[setting_name][choice][attr]
 
-        if setting_name not in ['progressive', 'dungeon_counters', 'openpyramid']:
+        if setting_name not in ['progressive', 'dungeon_counters', 'openpyramid', 'dropshuffle']:
             if choice == 'on':
                 choice = 1
             if choice == 'off':
@@ -89,7 +89,7 @@ def make_mystery(input_weights, default_settings, args):
         pool_size = NONDUNGEON
         pool_size += DUNGEON
         pool_size += POTTERY[settings['pottery']]
-        if settings['dropshuffle'] == 1:
+        if settings['dropshuffle'] != 'none':
             pool_size += KEYDROPS
         if settings['shopsanity'] == 1:
             pool_size += SHOPSANITY
@@ -102,7 +102,7 @@ def make_mystery(input_weights, default_settings, args):
         mandatory_pool_size = INVENTORY + MAPSANDCOMPASSES + BIGKEYS + SMALLKEYS + BOSSHEARTS
         if settings['shopsanity'] == 1:
             mandatory_pool_size += SHOPUPGRADES
-        if settings['dropshuffle'] == 1:
+        if settings['dropshuffle'] != 'none':
             mandatory_pool_size += KEYDROPS
         if settings['take_any'] != 'none':
             mandatory_pool_size += TAKE_ANY
@@ -263,6 +263,7 @@ def make_mystery(input_weights, default_settings, args):
         if settings['shuffleenemies'] != 'none' and settings['mode'] == 'standard':
             force_setting('swords', 'assured')
         if settings['shuffleenemies'] != 'none':
+            force_setting('any_enemy_logic', 'none')
             input_weights['enemy_health']['hard']['weight'] = 0
             input_weights['enemy_health']['expert']['weight'] = 0
 
@@ -315,6 +316,8 @@ def make_mystery(input_weights, default_settings, args):
 
         roll_setting('door_shuffle')
         if settings['door_shuffle'] != 'vanilla':
+            force_setting('key_logic_algorithm', 'partial')
+            force_setting('trap_door_mode', 'boss')
             roll_setting('intensity')
             roll_setting('door_type_mode')
             roll_setting('decoupledoors')
@@ -324,7 +327,7 @@ def make_mystery(input_weights, default_settings, args):
         roll_setting('pottery')
         if settings['pottery'] not in ('none', 'cave'):
             force_setting('dungeon_counters', 'on')
-            force_setting('dropshuffle', 'on')
+            force_setting('dropshuffle', 'keys')
         if settings['pottery'] not in ('none', 'cave', 'keys', 'cavekeys') and settings['goal'] not in ['triforcehunt', 'ganonhunt']:
             force_setting('wild_dungeon_items', 'mcsb')
         if settings['pottery'] != 'none':
@@ -372,6 +375,7 @@ def make_mystery(input_weights, default_settings, args):
             force_setting('collection_rate', 'off')
         roll_setting('collection_rate')
 
+        roll_setting('any_enemy_logic')
         roll_setting('flute_mode')
         roll_setting('swords')
         roll_setting('shufflebosses')
@@ -395,6 +399,8 @@ def make_mystery(input_weights, default_settings, args):
         roll_setting('beemizer')
         roll_setting('take_any')
         roll_setting('dropshuffle')
+        roll_setting('key_logic_algorithm')
+        roll_setting('trap_door_mode')
 
         if settings['goal'] in ['triforcehunt', 'ganonhunt']:
             tfh_weights_list = triforcehunt()
