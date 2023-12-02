@@ -8,7 +8,9 @@ goal:
   - If ganon (crystals + aga2) and not entrance, GT crystals is always <= ganon crystals
   - If fast ganon, and not entrance, GT crystals is always >= ganon crystals
   - Trinity won't roll by default
-  - If completionist, accessibility = locations and collectionrate counter is on
+
+collection_rate:
+  - Turned on if completionist, shopsanity, or any pottery
 
 mode:
   - If standard, boots hint is rolled, and insanity ER is off.
@@ -21,7 +23,6 @@ ohko:
 
 enemizer:
   - If enemies are shuffled, enemy health cannot be hard or expert.
-  - If enemies are shuffled, enemy drop logic is set to "none"
 
 entrance:
   - If NOT entrance, take any caves are off.
@@ -32,17 +33,23 @@ entrance:
 doors:
   - If doors, some wild dungeon items are guaranteed
   - If doors, dungeon counters are always on 
-  - If doors, key_logic_algorithm is set to "partial"
 
 pottery:
   - If any dungeon pottery is on, 'dungeon_counter' is on.
   - If pottery = dungeon or lottery, and it is not a triforce hunt, all dungeon items are wild.
   - If pottery is not none and not lottery, 'colorizepots' is on (pot checks are colored differently)
 
+enemydrop:
+  - Set to keys if any pottery is on, is
+  - Underworld is currently not enabled 
+
 dungeon_items:
   The options are: none, mc, s, b, mcs, mcb, mcsb
   - 'universal' keys can roll if wild keys have been rolled first
   - 'restrict_boss_items' (ambrosia) is rolled if there are any non-wild dungeon items
+
+key_logic_algorithm:
+  - Set to "partial" if door_shuffle, entrance, wild small keys, or keypotdropshuffle is on
 
 triforcehunt:
   - Triforce Goal is rolled as a fraction of the available item pool. I.e 30 = 30 in 216, but in pottery lottery 30 = 152
@@ -61,6 +68,7 @@ startinventory:
     - Mushroom + Shovel
     - 420 Rupees
     - Ether + Quake
+    - Capacity upgrades
 
 
 metadata presented after rolling:

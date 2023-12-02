@@ -263,7 +263,6 @@ def make_mystery(input_weights, default_settings, args):
         if settings['shuffleenemies'] != 'none' and settings['mode'] == 'standard':
             force_setting('swords', 'assured')
         if settings['shuffleenemies'] != 'none':
-            force_setting('any_enemy_logic', 'none')
             input_weights['enemy_health']['hard']['weight'] = 0
             input_weights['enemy_health']['expert']['weight'] = 0
 
@@ -316,7 +315,6 @@ def make_mystery(input_weights, default_settings, args):
 
         roll_setting('door_shuffle')
         if settings['door_shuffle'] != 'vanilla':
-            force_setting('key_logic_algorithm', 'partial')
             force_setting('trap_door_mode', 'boss')
             roll_setting('intensity')
             roll_setting('door_type_mode')
@@ -375,6 +373,10 @@ def make_mystery(input_weights, default_settings, args):
             force_setting('collection_rate', 'off')
         roll_setting('collection_rate')
 
+        if settings['door_shuffle'] != 'vanilla' or settings['shuffle'] != 'vanilla' or settings['pottery'] != 'none' or settings['keyshuffle'] != 'none':
+            force_setting('key_logic_algorithm', 'partial')
+        roll_setting('key_logic_algorithm')
+
         roll_setting('any_enemy_logic')
         roll_setting('flute_mode')
         roll_setting('swords')
@@ -399,7 +401,6 @@ def make_mystery(input_weights, default_settings, args):
         roll_setting('beemizer')
         roll_setting('take_any')
         roll_setting('dropshuffle')
-        roll_setting('key_logic_algorithm')
         roll_setting('trap_door_mode')
 
         if settings['goal'] in ['triforcehunt', 'ganonhunt']:
@@ -505,7 +506,7 @@ def main():
 
     presets = {
         'friendly': {'min_length': -6, 'max_length': 2, 'min_execution': -5, 'max_execution': 3, 'min_familiarity': -5, 'max_familiarity': 5, 'min_variance': -4, 'max_variance': 5, 'min_items': 1, 'max_items': 5},
-        'notslow': {'min_length': -6, 'max_length': 0, 'min_execution': -5, 'max_execution': 5, 'min_familiarity': -3, 'max_familiarity': 15, 'min_variance': -5, 'max_variance': 5, 'min_items': 0, 'max_items': 3},
+        'notslow': {'min_length': -2, 'max_length': 5, 'min_execution': -3, 'max_execution': 5, 'min_familiarity': -3, 'max_familiarity': 15, 'min_variance': -5, 'max_variance': 5, 'min_items': 0, 'max_items': 3},
         'complex': {'min_length': 3, 'max_length': 12, 'min_execution': 0, 'max_execution': 6, 'min_familiarity': 8, 'max_familiarity': 20, 'min_variance': -8, 'max_variance': 3, 'min_items': 0, 'max_items': 3},
         'ordeal': {'min_length': 13, 'max_length': 25, 'min_execution': 4, 'max_execution': 11, 'min_familiarity': 15, 'max_familiarity': 30, 'min_variance': -8, 'max_variance': 1, 'min_items': 0, 'max_items': 2},
         'chaos':{'min_length': -100, 'max_length': 100, 'min_execution': -100, 'max_execution': 100, 'min_familiarity': -100, 'max_familiarity': 100, 'min_variance': -100, 'max_variance': 100, 'min_items': 0, 'max_items': 8}
