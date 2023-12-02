@@ -62,7 +62,7 @@
 - If pottery is not none and not lottery, 'colorizepots' is on (pot checks are colored differently)
 
 ## enemydrop:
-- Set to keys if any pottery is on, is
+- Set to keys if any pottery is on
 - Underworld is currently not enabled 
 
 ## dungeon_items:
@@ -81,10 +81,10 @@
 - Triforcehunt can be Ganonhunt, which means get the pieces and then kill ganon. You know this is the case when Muradahla is not present
 
 ## startinventory:
- - There is a minimum and maximum item count.
- - Items are first rolled to attempt to put the settings within the points intervals
- - If the poins are within the point intervals, there is a chance to roll bonus items
- 'An item' is a fluid concept. Some examples of "single" items in the weights
+- There is a minimum and maximum item count.
+- Items are first rolled to attempt to put the settings within the points intervals
+- If the poins are within the point intervals, there is a chance to roll bonus items
+- 'An item' is a fluid concept. Some examples of "single" items in the weights:
 - 3 Bosshearts
 - 2 Mail upgrades
 - Mushroom + Shovel
