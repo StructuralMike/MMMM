@@ -1241,7 +1241,7 @@
             "expose": true
         },
         "keys": {
-            "weight": 15,
+            "weight": 20,
             "length": 1,
             "execution": 0,
             "familiarity": 2,
@@ -1297,7 +1297,7 @@
             "expose": false
         },
         "lottery": {
-            "weight": 30,
+            "weight": 25,
             "length": 4,
             "execution": 0,
             "familiarity": 5,

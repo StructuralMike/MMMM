@@ -20,6 +20,8 @@
 - Boots Hint (yes, no)
 - Extra TF Pool XX% (percent more pieces in pool than required by goal)
 
+## ALL AVAILABLE SETTINGS CAN BE ROLLED UNLESS OTHERWISE SPECIFIED (almost)
+
 ## logic:
 - always noglitches unless forced otherwise
 - Guarantees starting boots if any glitch mode
@@ -45,6 +47,7 @@
 
 ## enemizer:
 - If enemies are shuffled, enemy health cannot be hard or expert.
+- Enemy damage is always default.
 
 ## entrance:
 - If NOT entrance, take any caves are off.
