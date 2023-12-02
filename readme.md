@@ -4,7 +4,7 @@
 - **Independent Settings**: The probability of one setting being chosen (typically) doesn't affect the others.
 
 ## The MMMM Generator:
-- **Attribute-based**: Instead of chances, each setting has four attributes (like length, execution, familiarity, and variance) with assigned values.
+- **Attribute-based**: Instead of chances, each setting has four attributes (length, execution, familiarity, and variance) with assigned values.
 - **Score System**: Each attribute has a score that accumulates as settings are chosen.
 - **Preset Ranges**: Users can set minimum and maximum limits for each attribute. These limits define the acceptable range for the final seed.
 - **Balanced Rolling**: The generator picks settings in a way that the total scores for all attributes stay within these preset ranges.
