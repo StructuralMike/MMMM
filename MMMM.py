@@ -228,6 +228,8 @@ def make_mystery(input_weights, default_settings, args):
             force_setting('pseudoboots', 'off')
             startinventory.append('Pegasus Boots')
             input_weights['startinventory']['Pegasus Boots']['weight'] = 0
+        if settings['logic'] == 'hybridglitches':
+            force_setting('door_shuffle', 'vanilla') 
 
         roll_setting('goal')
         if settings['goal'] in ['triforcehunt', 'ganonhunt', 'trinity']:
@@ -556,6 +558,9 @@ def main():
         input_weights['hints']['on']['weight'] = 1
         input_weights['mystery']['on']['weight'] = 0
         input_weights['mystery']['off']['weight'] = 1
+
+    if preset in ['friendly', 'notslow']:
+        input_weights['door_shuffle']['vanilla']['weight'] = 1000
 
     mystery_settings = make_mystery(input_weights, default_settings, args)
     if not mystery_settings:

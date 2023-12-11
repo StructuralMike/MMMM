@@ -122,6 +122,14 @@
             "variance": 0,
             "expose": true
         },
+        "hybridglitches": {
+            "weight": 0,
+            "length": 0,
+            "execution": 0,
+            "familiarity": 0,
+            "variance": 0,
+            "expose": false
+        },
         "nologic": {
             "weight": 0,
             "length": 0,
