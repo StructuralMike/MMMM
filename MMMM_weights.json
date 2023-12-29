@@ -128,7 +128,7 @@
             "execution": 0,
             "familiarity": 0,
             "variance": 0,
-            "expose": false
+            "expose": true
         },
         "nologic": {
             "weight": 0,
@@ -1349,7 +1349,7 @@
     },
     "key_logic_algorithm": {
         "default": {
-            "weight": 1,
+            "weight": 0,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
@@ -1357,7 +1357,7 @@
             "expose": false
         },
         "partial": {
-            "weight": 0,
+            "weight": 1,
             "length": 0,
             "execution": 0,
             "familiarity": 0,

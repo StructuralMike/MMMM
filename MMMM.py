@@ -242,6 +242,7 @@ def make_mystery(input_weights, default_settings, args):
             force_setting('mystery', 'off')
             force_setting('collection_rate', 'on')
             force_setting('timer', 'none')
+            force_setting('shopsanity', 'off')
         if settings['goal'] in ('ganon', 'crystals'):
             roll_setting('crystals_ganon')
         if settings['goal'] == 'crystals':
@@ -375,8 +376,6 @@ def make_mystery(input_weights, default_settings, args):
             force_setting('collection_rate', 'off')
         roll_setting('collection_rate')
 
-        if settings['door_shuffle'] != 'vanilla' or settings['shuffle'] != 'vanilla' or settings['pottery'] != 'none' or settings['keyshuffle'] != 'none':
-            force_setting('key_logic_algorithm', 'partial')
         roll_setting('key_logic_algorithm')
 
         roll_setting('any_enemy_logic')

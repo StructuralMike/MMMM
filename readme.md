@@ -23,8 +23,9 @@
 ## ALL AVAILABLE SETTINGS CAN BE ROLLED UNLESS OTHERWISE SPECIFIED (almost)
 
 ## logic:
-- always noglitches unless forced otherwise
+- Always noglitches unless forced
 - Guarantees starting boots if any glitch mode
+- HMG forces door_shuffle to vanilla
 
 ## goal:
 - If ganonhunt and not entrance, pyramid is open or GT is 0 crystals
@@ -48,6 +49,7 @@
 ## enemizer:
 - If enemies are shuffled, enemy health cannot be hard or expert.
 - Enemy damage is always default.
+- Enemy logic is always set to allow_all.
 
 ## entrance:
 - If NOT entrance, take any caves are off.
@@ -74,7 +76,7 @@
 - 'restrict_boss_items' (ambrosia) is rolled if there are any non-wild dungeon items
 
 ## key_logic_algorithm:
-- Set to "partial" if door_shuffle, entrance, wild small keys, or keypotdropshuffle is on
+- Always set to "partial".
 
 ## triforcehunt:
 - Triforce Goal is rolled as a fraction of the available item pool. I.e 30 = 30 in 216, but in pottery lottery 30 = 152
