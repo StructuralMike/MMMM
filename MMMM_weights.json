@@ -762,7 +762,7 @@
         },
         "restricted": {
             "weight": 13,
-            "length": 3,
+            "length": 2,
             "execution": 0,
             "familiarity": 2,
             "variance": 3,
@@ -770,7 +770,7 @@
         },
         "crossed": {
             "weight": 30,
-            "length": 5,
+            "length": 2,
             "execution": 1,
             "familiarity": 4,
             "variance": 4,
