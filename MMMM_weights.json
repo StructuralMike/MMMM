@@ -73,7 +73,7 @@
     },
     "mode": {
         "open": {
-            "weight": 55,
+            "weight": 60,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
@@ -89,7 +89,7 @@
             "expose": true
         },
         "inverted": {
-            "weight": 20,
+            "weight": 15,
             "length": 1,
             "execution": 1,
             "familiarity": 2,
