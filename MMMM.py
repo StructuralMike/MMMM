@@ -559,7 +559,10 @@ def main():
         input_weights['mystery']['off']['weight'] = 1
 
     if args.preset in ['friendly', 'notslow']:
-        input_weights['door_shuffle']['vanilla']['weight'] = 10000
+        input_weights['door_shuffle']['vanilla']['weight'] = 100
+        input_weights['door_shuffle']['basic']['weight'] = 0
+        input_weights['door_shuffle']['partitioned']['weight'] = 0
+        input_weights['door_shuffle']['crossed']['weight'] = 0
 
     mystery_settings = make_mystery(input_weights, default_settings, args)
     if not mystery_settings:
