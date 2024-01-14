@@ -68,6 +68,7 @@ def make_mystery(input_weights, default_settings, args):
         for attr,_,_ in attrs:
             score[attr] += input_weights[setting_name][choice][attr]
 
+        # Some arbitrary settings need to be bools instead of ints
         if setting_name not in ['progressive', 'dungeon_counters', 'openpyramid', 'dropshuffle']:
             if choice == 'on':
                 choice = 1
@@ -201,6 +202,9 @@ def make_mystery(input_weights, default_settings, args):
             if new_score < attr_min or new_score > attr_max:
                 return False
         return True 
+    
+    def set_input_weight(setting_name:str, option:str, weight:int) -> None:
+        input_weights[setting_name][option]['weight'] = weight
 
     attrs = [
         ('length', args.min_length, args.max_length),
@@ -217,7 +221,7 @@ def make_mystery(input_weights, default_settings, args):
         attempts += 1
         settings = copy.copy(default_settings)
         input_weights = copy.deepcopy(cached_weights)
-        input_weights['algorithm']['vanilla_fill']['weight'] = 0
+        set_input_weight('algorithm', 'vanilla_fill', 0)
         startinventory = []
         score = {}
         for attr,_,_ in attrs:
@@ -227,20 +231,19 @@ def make_mystery(input_weights, default_settings, args):
         if settings['logic'] != 'noglitches':
             force_setting('pseudoboots', 'off')
             startinventory.append('Pegasus Boots')
-            input_weights['startinventory']['Pegasus Boots']['weight'] = 0
+            set_input_weight('startinventory', 'Pegasus Boots', 0)
         if settings['logic'] == 'hybridglitches':
             force_setting('door_shuffle', 'vanilla') 
 
         roll_setting('goal')
         if settings['goal'] in ['triforcehunt', 'ganonhunt', 'trinity']:
-            input_weights['algorithm']['major_only']['weight'] = 0
+            set_input_weight('algorithm', 'major_only', 0)
         if settings['goal'] == 'ganonhunt':
             force_setting('openpyramid', 'on')
             force_setting('shuffle', 'vanilla')
         if settings['goal'] == 'completionist':
             force_setting('accessibility', 'locations')
             force_setting('mystery', 'off')
-            force_setting('collection_rate', 'on')
             force_setting('timer', 'none')
             force_setting('shopsanity', 'off')
         if settings['goal'] in ('ganon', 'crystals'):
@@ -250,24 +253,26 @@ def make_mystery(input_weights, default_settings, args):
 
         roll_setting('mode')
         if settings['mode'] == 'standard':
-            input_weights['boots_hint']['on']['weight'] = input_weights['boots_hint']['off']['weight']
-            input_weights['shuffle']['insanity']['weight'] = 0
+            set_input_weight('boots_hint', 'on', 1)
+            set_input_weight('boots_hint', 'off', 1)
+            set_input_weight('shuffle', 'insanity', 0)
             force_setting('flute_mode', 'normal')
              
         roll_setting('timer')
         if settings['timer'] != 'none':
             force_setting('shuffleenemies', 'none')
             force_setting('shufflebosses', 'none')
-            input_weights['pottery']['dungeon']['weight'] = 0
-            input_weights['pottery']['reduced']['weight'] = 0
-            input_weights['pottery']['lottery']['weight'] = 0
+            set_input_weight('pottery', 'dungeon', 0)
+            set_input_weight('pottery', 'reduced', 0)
+            set_input_weight('pottery', 'lottery', 0)
 
         roll_setting('shuffleenemies')
         if settings['shuffleenemies'] != 'none' and settings['mode'] == 'standard':
             force_setting('swords', 'assured')
         if settings['shuffleenemies'] != 'none':
-            input_weights['enemy_health']['hard']['weight'] = 0
-            input_weights['enemy_health']['expert']['weight'] = 0
+            set_input_weight('swords', 'swordless', 0)
+            set_input_weight('enemy_health', 'hard', 0)
+            set_input_weight('enemy_health', 'expert', 0)
 
         roll_setting('shuffle')
         if settings['shuffle'] == 'vanilla':
@@ -277,15 +282,15 @@ def make_mystery(input_weights, default_settings, args):
             force_setting('overworld_map', 'default')
             force_setting('take_any', 'none')
         if settings['shuffle'] == 'lean':
-            input_weights['pottery']['lottery']['weight'] = 0
-            input_weights['pottery']['reduced']['weight'] = 0
-            input_weights['pottery']['cave']['weight'] = 0
-            input_weights['pottery']['cavekeys']['weight'] = 0
+            set_input_weight('pottery', 'lottery', 0)
+            set_input_weight('pottery', 'reduced', 0)
+            set_input_weight('pottery', 'cave', 0)
+            set_input_weight('pottery', 'cavekeys', 0)
             force_setting('shopsanity', 'off')
         if settings['shuffle'] == 'insanity':
             force_setting('bombbag', 'off')
             startinventory.append('Ocarina')
-            input_weights['startinventory']['Ocarina']['weight'] = 0
+            set_input_weight('startinventory', 'Ocarina', 0)
 
         if settings['shuffle'] != 'vanilla':
             if settings['goal'] == 'ganonhunt':
@@ -296,20 +301,19 @@ def make_mystery(input_weights, default_settings, args):
                 force_setting('openpyramid', 'off')
             if settings['mode'] == 'inverted':
                 force_setting('shufflelinks', 'on')
-            force_setting('accessibility', 'locations')
-            input_weights['take_any']['random']['familiarity'] = 0
-            input_weights['take_any']['fixed']['familiarity'] = 0
+            set_input_weight('take_any', 'random', 0)
+            set_input_weight('take_any', 'fixed', 0)
 
         if settings['shuffle'] == 'vanilla' and settings['goal'] == 'ganon':
             max_gt = int(settings['crystals_ganon'])
             for key in input_weights['crystals_gt']:
                 if int(key) > max_gt:
-                    input_weights['crystals_gt'][key]['weight'] = 0
+                    set_input_weight('crystals_gt', key, 0)
                 else:
                     input_weights['crystals_gt'][key]['length'] = 0
                     input_weights['crystals_gt'][key]['execution'] = 0
             roll_setting('crystals_gt')
-        elif settings['shuffle'] != 'vanilla' and settings['goal'] == 'ganonhunt' and settings['openpyramid'] == 0:
+        elif settings['shuffle'] == 'vanilla' and settings['goal'] == 'ganonhunt' and settings['openpyramid'] == 0:
             settings['crystals_gt'] = "0"
         elif settings['shuffle'] == 'vanilla' and settings['goal'] == 'crystals':
             settings['crystals_gt'] = str(random.randint(int(settings['crystals_ganon']),7))
@@ -318,12 +322,13 @@ def make_mystery(input_weights, default_settings, args):
 
         roll_setting('door_shuffle')
         if settings['door_shuffle'] != 'vanilla':
+            force_setting('dungeon_counters', 'on')
             force_setting('trap_door_mode', 'boss')
+            force_setting('accessibility', 'locations')
             roll_setting('intensity')
             roll_setting('door_type_mode')
             roll_setting('decoupledoors')
-            force_setting('dungeon_counters', 'on')
-            input_weights['wild_dungeon_items']['none']['weight'] = 0
+            roll_setting('trap_door_mode')
 
         roll_setting('pottery')
         if settings['pottery'] not in ('none', 'cave'):
@@ -338,7 +343,7 @@ def make_mystery(input_weights, default_settings, args):
         if 'm' in settings['wild_dungeon_items'] and 'c' in settings['wild_dungeon_items'] and 's' in settings['wild_dungeon_items'] and 'b' in settings['wild_dungeon_items']:
             force_setting('restrict_boss_items', 'none')
         elif 'm' in settings['wild_dungeon_items'] and 'c' in settings['wild_dungeon_items']:
-            input_weights['restrict_boss_items']['mapcompass']['weight'] = 0
+            set_input_weight('restrict_boss_items', 'mapcompass', 0)
         
         if 'm' in settings['wild_dungeon_items']:
             settings['mapshuffle'] = 1
@@ -353,31 +358,38 @@ def make_mystery(input_weights, default_settings, args):
         del settings['wild_dungeon_items']
 
         if settings['keyshuffle'] != 'universal':
-            input_weights['startinventory']['Small Key (Universal),Small Key (Universal),Small Key (Universal)']['weight'] = 0
+            set_input_weight('startinventory', 'Small Key (Universal),Small Key (Universal),Small Key (Universal)', 0)
 
         roll_setting('bow_mode')
         if settings['bow_mode'] in  ['retro', 'retro_silvers']:
             input_weights['startinventory']['Bow'] = input_weights['startinventory'].pop('Progressive Bow')
-            input_weights['startinventory']['Arrow Upgrade (+10)']['weight'] = 0
+            set_input_weight('startinventory', 'Arrow Upgrade (+10)', 0)
 
         roll_setting('difficulty')
         if settings['difficulty'] in ['hard','expert']:
-            input_weights['startinventory']['Progressive Armor,Progressive Armor']['weight'] = 0
+            set_input_weight('startinventory', 'Progressive Armor,Progressive Armor', 0)
 
         roll_setting('bombbag')
         if settings['bombbag'] == 1:
-            input_weights['startinventory']['Bomb Upgrade (+10)']['weight'] = 0
-            input_weights['startinventory']['Bombs (10)']['weight'] = 0
+            set_input_weight('startinventory', 'Bomb Upgrade (+10)', 0)
+            set_input_weight('startinventory', 'Bombs (10)', 0)
 
         roll_setting('shopsanity')
 
         roll_setting('mystery')
-        if settings['shopsanity'] == 0 and settings['pottery'] == 'none':
+        if settings['shopsanity'] == 0 and settings['pottery'] == 'none' and settings['goal'] != 'completionist':
             force_setting('collection_rate', 'off')
         roll_setting('collection_rate')
 
-        roll_setting('key_logic_algorithm')
+        if settings['pottery'] not in ['none', 'keys']:
+            set_input_weight('beemizer', '3', 0)
+            set_input_weight('beemizer', '4', 0)
 
+        if settings['timer'] != 'none':
+            force_setting('beemizer', '0')
+
+        roll_setting('beemizer')
+        roll_setting('key_logic_algorithm')
         roll_setting('any_enemy_logic')
         roll_setting('flute_mode')
         roll_setting('swords')
@@ -399,10 +411,8 @@ def make_mystery(input_weights, default_settings, args):
         roll_setting('item_functionality')
         roll_setting('progressive')
         roll_setting('accessibility')
-        roll_setting('beemizer')
         roll_setting('take_any')
         roll_setting('dropshuffle')
-        roll_setting('trap_door_mode')
 
         if settings['goal'] in ['triforcehunt', 'ganonhunt']:
             tfh_weights_list = triforcehunt()
@@ -510,7 +520,8 @@ def main():
         'notslow': {'min_length': -2, 'max_length': 5, 'min_execution': -3, 'max_execution': 4, 'min_familiarity': 1, 'max_familiarity': 15, 'min_variance': -5, 'max_variance': 5, 'min_items': 0, 'max_items': 3},
         'complex': {'min_length': 3, 'max_length': 12, 'min_execution': 0, 'max_execution': 6, 'min_familiarity': 8, 'max_familiarity': 20, 'min_variance': -8, 'max_variance': 3, 'min_items': 0, 'max_items': 3},
         'ordeal': {'min_length': 13, 'max_length': 25, 'min_execution': 4, 'max_execution': 11, 'min_familiarity': 15, 'max_familiarity': 30, 'min_variance': -8, 'max_variance': 1, 'min_items': 0, 'max_items': 2},
-        'chaos':{'min_length': -100, 'max_length': 100, 'min_execution': -100, 'max_execution': 100, 'min_familiarity': -100, 'max_familiarity': 100, 'min_variance': -100, 'max_variance': 100, 'min_items': 0, 'max_items': 8}
+        'chaos': {'min_length': -100, 'max_length': 100, 'min_execution': -100, 'max_execution': 100, 'min_familiarity': -100, 'max_familiarity': 100, 'min_variance': -100, 'max_variance': 100, 'min_items': 0, 'max_items': 8},
+        'volatility': {'min_length': -100, 'max_length': 100, 'min_execution': -100, 'max_execution': 100, 'min_familiarity': -100, 'max_familiarity': 100, 'min_variance': 6, 'max_variance': 100, 'min_items': 0, 'max_items': 8}
     }
 
     preset = presets.get(args.preset, {})

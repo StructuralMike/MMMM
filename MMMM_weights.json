@@ -141,7 +141,7 @@
     },
     "goal": {
         "ganon": {
-            "weight": 45,
+            "weight": 40,
             "length": 0,
             "execution": 0,
             "familiarity": -1,
@@ -157,7 +157,7 @@
             "expose": true
         },
         "dungeons": {
-            "weight": 10,
+            "weight": 8,
             "length": 2,
             "execution": 0,
             "familiarity": 0,
@@ -165,7 +165,7 @@
             "expose": true
         },
         "triforcehunt": {
-            "weight": 10,
+            "weight": 13,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
@@ -197,9 +197,9 @@
             "expose": true
         },
         "completionist": {
-            "weight": 1,
-            "length": 10,
-            "execution": 0,
+            "weight": 5,
+            "length": 5,
+            "execution": 1,
             "familiarity": 3,
             "variance": -5,
             "expose": true
@@ -545,7 +545,7 @@
     },
     "accessibility": {
         "items": {
-            "weight": 75,
+            "weight": 0,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
@@ -553,7 +553,7 @@
             "expose": false
         },
         "locations": {
-            "weight": 0,
+            "weight": 75,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
@@ -564,7 +564,7 @@
             "weight": 25,
             "length": 0,
             "execution": 0,
-            "familiarity": 2,
+            "familiarity": 0,
             "variance": -1,
             "expose": false
         }
@@ -639,17 +639,17 @@
         "3": {
             "weight": 2,
             "length": 0,
-            "execution": 1,
-            "familiarity": 1,
-            "variance": 1,
+            "execution": 2,
+            "familiarity": 2,
+            "variance": 0,
             "expose": false
         },
         "4": {
             "weight": 1,
             "length": 0,
             "execution": 2,
-            "familiarity": 1,
-            "variance": 1,
+            "familiarity": 2,
+            "variance": 0,
             "expose": false
         }
     },
@@ -1078,7 +1078,7 @@
         },
         "basic": {
             "weight": 15,
-            "length": 5,
+            "length": 3,
             "execution": 1,
             "familiarity": 6,
             "variance": 2,
@@ -1086,7 +1086,7 @@
         },
         "partitioned": {
             "weight": 10,
-            "length": 6,
+            "length": 4,
             "execution": 1,
             "familiarity": 8,
             "variance": 2,
@@ -1094,7 +1094,7 @@
         },
         "crossed": {
             "weight": 5,
-            "length": 7,
+            "length": 5,
             "execution": 2,
             "familiarity": 10,
             "variance": 3,
@@ -1129,7 +1129,7 @@
     },
     "door_type_mode": {
         "original": {
-            "weight": 70,
+            "weight": 50,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
@@ -1137,7 +1137,7 @@
             "expose": false
         },
         "big": {
-            "weight": 25,
+            "weight": 45,
             "length": 0,
             "execution": 0,
             "familiarity": 0,

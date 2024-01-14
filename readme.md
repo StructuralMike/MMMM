@@ -27,12 +27,17 @@
 - Guarantees starting boots if any glitch mode
 - HMG forces door_shuffle to vanilla
 
+## accessibility:
+- 100% locations, or beatable only
+- If door_shuffle, always 100% locations
+
 ## goal:
 - If ganonhunt and not entrance, pyramid is open or GT is 0 crystals
 - If ganonhunt and entrance, ganon is vanilla and pyramid is open
 - If ganon (crystals + aga2) and not entrance, GT crystals is always <= ganon crystals
 - If fast ganon, and not entrance, GT crystals is always >= ganon crystals
 - Trinity won't roll by default
+- If completionist, shopsanity and ohko is turned off. 
 
 ## collection_rate:
 - Turned on if completionist, shopsanity, or any pottery
@@ -47,7 +52,7 @@
 - If ohko, pottery can't be dungeons, reduced, or lottery
 
 ## enemizer:
-- If enemies are shuffled, enemy health cannot be hard or expert.
+- If enemies are shuffled, enemy health cannot be hard or expert, and it can not be swordless.
 - Enemy damage is always default.
 - Enemy logic is always set to allow_all.
 
@@ -58,8 +63,10 @@
 - If insanity entrance, bombbag is always off and you have a starting flute.
 
 ## doors:
-- If doors, some wild dungeon items are guaranteed
-- If doors, dungeon counters are always on 
+- If door_shuffle is not vanilla:
+- - dungeon counters are always on 
+- - trap_door_mode is set to boss
+- - itensity is set to 3
 
 ## pottery:
 - If any dungeon pottery is on, 'dungeon_counter' is on.
@@ -71,9 +78,13 @@
 - Underworld is currently not enabled 
 
 ## dungeon_items:
-- The options are: none, mc, s, b, mcs, mcb, mcsb
+- The allowed options are: none, mc, s, b, mcs, mcb, mcsb
 - 'universal' keys can roll if wild keys have been rolled first
 - 'restrict_boss_items' (ambrosia) is rolled if there are any non-wild dungeon items
+
+## beemizer:
+- If pottery, then beemizer can never be higher than 1
+- If OHKO, beemizer is 0.
 
 ## key_logic_algorithm:
 - Always set to "partial".
