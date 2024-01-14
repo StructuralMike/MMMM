@@ -512,9 +512,6 @@ def main():
     weight_file = args.i if args.i else "MMMM_weights.json"
     default_file = args.d if args.d else "MMMM_base.json"
     output_file = args.o if args.o else "MMMM_mystery.json"
-
-    args.preset = args.preset if args.preset else 'friendly'
-
     presets = {
         'friendly': {'min_length': -6, 'max_length': 2, 'min_execution': -5, 'max_execution': 3, 'min_familiarity': -5, 'max_familiarity': 5, 'min_variance': -4, 'max_variance': 5, 'min_items': 1, 'max_items': 5},
         'notslow': {'min_length': -2, 'max_length': 5, 'min_execution': -3, 'max_execution': 4, 'min_familiarity': 1, 'max_familiarity': 15, 'min_variance': -5, 'max_variance': 5, 'min_items': 0, 'max_items': 3},
@@ -523,6 +520,8 @@ def main():
         'chaos': {'min_length': -100, 'max_length': 100, 'min_execution': -100, 'max_execution': 100, 'min_familiarity': -100, 'max_familiarity': 100, 'min_variance': -100, 'max_variance': 100, 'min_items': 0, 'max_items': 8},
         'volatility': {'min_length': -100, 'max_length': 100, 'min_execution': -100, 'max_execution': 100, 'min_familiarity': -100, 'max_familiarity': 100, 'min_variance': 6, 'max_variance': 100, 'min_items': 0, 'max_items': 8}
     }
+
+    args.preset = args.preset if args.preset in presets else 'friendly'
 
     preset = presets.get(args.preset, {})
     args.min_length = args.min_length if args.min_length else preset.get('min_length', 0)
