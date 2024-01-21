@@ -4,6 +4,7 @@ import random
 import copy
 import sys
 import numpy as np
+from functools import lru_cache
 
 MAX_ATTEMPTS = 2000
 
@@ -63,7 +64,10 @@ def make_mystery(input_weights, default_settings, args):
         if not weights:
             return
 
-        choice = random.choices(options, weights=weights, k=1)[0]
+        try:
+            choice = random.choices(options, weights=weights, k=1)[0]
+        except:
+            raise ValueError(f'Error rolling {setting_name} with weights {weights}')
 
         for attr,_,_ in attrs:
             score[attr] += input_weights[setting_name][choice][attr]
@@ -118,21 +122,23 @@ def make_mystery(input_weights, default_settings, args):
         if total < 300:
             cpm = 1.7
             if settings['shuffle'] != 'vanilla':
-                cpm = cpm*0.8
+                cpm *= 0.8
         elif total < 500:
             cpm = 3.3
         elif total < 1000:
             cpm = 4
-        else:
+        elif total < 1500:
             cpm = 5.3
+        else:
+            cpm = 7.8
 
         if settings['door_shuffle'] != 'vanilla':
             cpm = cpm*0.9
 
         time_per_run = [None]*500
 
+        bag = ['pool']*pool + ['junk']*(total-pool)
         for i in range(500):
-            bag = ['pool']*pool + ['junk']*(total-pool)
             np.random.shuffle(bag)
             accumulator = 0
             for checks,item in enumerate(bag):
@@ -149,6 +155,7 @@ def make_mystery(input_weights, default_settings, args):
 
         return length, variance
 
+    @lru_cache(maxsize=None)  # maxsize=None means there's no limit to the cache size
     def triforcehunt() -> list:
         roll_weights = []
         minimum_pool_size = determine_mandatory_pool_size()
@@ -215,9 +222,6 @@ def make_mystery(input_weights, default_settings, args):
     cached_weights = copy.deepcopy(input_weights)
     attempts = 0
     while attempts <= MAX_ATTEMPTS:
-        if attempts == 300:
-            cached_weights['goal']['triforcehunt']['weight'] = 0
-            cached_weights['goal']['ganonhunt']['weight'] = 0
         attempts += 1
         settings = copy.copy(default_settings)
         input_weights = copy.deepcopy(cached_weights)
@@ -257,14 +261,25 @@ def make_mystery(input_weights, default_settings, args):
             set_input_weight('boots_hint', 'off', 1)
             set_input_weight('shuffle', 'insanity', 0)
             force_setting('flute_mode', 'normal')
-             
+
+        roll_setting('dropshuffle')
+        if settings['dropshuffle'] == 'underworld':
+            force_setting('swords', 'assured')
+            startinventory.append('Blue Boomerang')
+            set_input_weight('startinventory', 'Blue Boomerang', 0)
+        if settings['dropshuffle'] != 'none':
+            set_input_weight('pottery', 'none', 0)
+            set_input_weight('pottery', 'cave', 0)
+
         roll_setting('timer')
         if settings['timer'] != 'none':
             force_setting('shuffleenemies', 'none')
             force_setting('shufflebosses', 'none')
+            force_setting('beemizer', '0')
             set_input_weight('pottery', 'dungeon', 0)
             set_input_weight('pottery', 'reduced', 0)
             set_input_weight('pottery', 'lottery', 0)
+            set_input_weight('dropshuffle', 'underworld', 0)
 
         roll_setting('shuffleenemies')
         if settings['shuffleenemies'] != 'none' and settings['mode'] == 'standard':
@@ -331,13 +346,18 @@ def make_mystery(input_weights, default_settings, args):
             roll_setting('trap_door_mode')
 
         roll_setting('pottery')
-        if settings['pottery'] not in ('none', 'cave'):
+        if settings['pottery'] not in ('none', 'cave') or settings['dropshuffle'] != 'none':
             force_setting('dungeon_counters', 'on')
-            force_setting('dropshuffle', 'keys')
-        if settings['pottery'] not in ('none', 'cave', 'keys', 'cavekeys') and settings['goal'] not in ['triforcehunt', 'ganonhunt']:
-            force_setting('wild_dungeon_items', 'mcsb')
         if settings['pottery'] != 'none':
             settings['colorizepots'] = 1
+
+
+        if settings['goal'] not in ['triforcehunt', 'ganonhunt'] and (settings['pottery'] not in ('none', 'cave', 'keys', 'cavekeys') or settings['dropshuffle'] == 'underworld'):
+            set_input_weight('wild_dungeon_items', 'none', 0)
+            set_input_weight('wild_dungeon_items', 'b', 0)
+            set_input_weight('wild_dungeon_items', 'mc', 0)
+            set_input_weight('wild_dungeon_items', 'mcb', 0)
+            set_input_weight('universal_small_keys', 'on', 0)
 
         roll_setting('wild_dungeon_items')
         if 'm' in settings['wild_dungeon_items'] and 'c' in settings['wild_dungeon_items'] and 's' in settings['wild_dungeon_items'] and 'b' in settings['wild_dungeon_items']:
@@ -412,7 +432,6 @@ def make_mystery(input_weights, default_settings, args):
         roll_setting('progressive')
         roll_setting('accessibility')
         roll_setting('take_any')
-        roll_setting('dropshuffle')
 
         if settings['goal'] in ['triforcehunt', 'ganonhunt']:
             tfh_weights_list = triforcehunt()
@@ -513,10 +532,10 @@ def main():
     default_file = args.d if args.d else "MMMM_base.json"
     output_file = args.o if args.o else "MMMM_mystery.json"
     presets = {
-        'friendly': {'min_length': -6, 'max_length': 2, 'min_execution': -5, 'max_execution': 3, 'min_familiarity': -5, 'max_familiarity': 5, 'min_variance': -4, 'max_variance': 5, 'min_items': 1, 'max_items': 5},
-        'notslow': {'min_length': -2, 'max_length': 5, 'min_execution': -3, 'max_execution': 4, 'min_familiarity': 1, 'max_familiarity': 15, 'min_variance': -5, 'max_variance': 5, 'min_items': 0, 'max_items': 3},
-        'complex': {'min_length': 3, 'max_length': 12, 'min_execution': 0, 'max_execution': 6, 'min_familiarity': 8, 'max_familiarity': 20, 'min_variance': -8, 'max_variance': 3, 'min_items': 0, 'max_items': 3},
-        'ordeal': {'min_length': 13, 'max_length': 25, 'min_execution': 4, 'max_execution': 11, 'min_familiarity': 15, 'max_familiarity': 30, 'min_variance': -8, 'max_variance': 1, 'min_items': 0, 'max_items': 2},
+        'friendly': {'min_length': -6, 'max_length': 2, 'min_execution': -5, 'max_execution': 3, 'min_familiarity': -5, 'max_familiarity': 8, 'min_variance': -2, 'max_variance': 8, 'min_items': 1, 'max_items': 5},
+        'notslow': {'min_length': -2, 'max_length': 5, 'min_execution': -3, 'max_execution': 4, 'min_familiarity': 2, 'max_familiarity': 15, 'min_variance': -5, 'max_variance': 5, 'min_items': 0, 'max_items': 3},
+        'complex': {'min_length': 3, 'max_length': 12, 'min_execution': 0, 'max_execution': 6, 'min_familiarity': 8, 'max_familiarity': 20, 'min_variance': -8, 'max_variance': 5, 'min_items': 0, 'max_items': 3},
+        'ordeal': {'min_length': 10, 'max_length': 25, 'min_execution': 4, 'max_execution': 11, 'min_familiarity': 16, 'max_familiarity': 30, 'min_variance': -8, 'max_variance': 8, 'min_items': 0, 'max_items': 2},
         'chaos': {'min_length': -100, 'max_length': 100, 'min_execution': -100, 'max_execution': 100, 'min_familiarity': -100, 'max_familiarity': 100, 'min_variance': -100, 'max_variance': 100, 'min_items': 0, 'max_items': 8},
         'volatility': {'min_length': -100, 'max_length': 100, 'min_execution': -100, 'max_execution': 100, 'min_familiarity': -100, 'max_familiarity': 100, 'min_variance': 10, 'max_variance': 100, 'min_items': 0, 'max_items': 8}
     }
