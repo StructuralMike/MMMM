@@ -14,6 +14,7 @@ DUNGEON = 8 + 6 + 6 + 6 + 2 + 14 + 10 + 8 + 8 + 8 + 8 + 12 + 27
 KEYDROPS = 13
 SHOPSANITY = 32
 TAKE_ANY = 9
+UNDERWORLD = 700
 
 # Pottery
 keys = 19
@@ -100,6 +101,8 @@ def make_mystery(input_weights, default_settings, args):
             pool_size += SHOPSANITY
         if settings['take_any'] != 'none':
             pool_size += TAKE_ANY
+        if settings ['dropshuffle'] == 'underworld':
+            pool_size += UNDERWORLD
         return pool_size
     
     def determine_mandatory_pool_size() -> int:
@@ -267,6 +270,7 @@ def make_mystery(input_weights, default_settings, args):
             force_setting('swords', 'assured')
             startinventory.append('Blue Boomerang')
             set_input_weight('startinventory', 'Blue Boomerang', 0)
+            force_setting('timer', 'none')
         if settings['dropshuffle'] != 'none':
             set_input_weight('pottery', 'none', 0)
             set_input_weight('pottery', 'cave', 0)
@@ -279,7 +283,6 @@ def make_mystery(input_weights, default_settings, args):
             set_input_weight('pottery', 'dungeon', 0)
             set_input_weight('pottery', 'reduced', 0)
             set_input_weight('pottery', 'lottery', 0)
-            set_input_weight('dropshuffle', 'underworld', 0)
 
         roll_setting('shuffleenemies')
         if settings['shuffleenemies'] != 'none' and settings['mode'] == 'standard':
