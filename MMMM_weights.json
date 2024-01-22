@@ -189,7 +189,7 @@
             "expose": true
         },
         "ganonhunt": {
-            "weight": 5,
+            "weight": 6,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
@@ -197,7 +197,7 @@
             "expose": true
         },
         "completionist": {
-            "weight": 7,
+            "weight": 6,
             "length": 5,
             "execution": 0,
             "familiarity": 3,

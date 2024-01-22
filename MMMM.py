@@ -268,12 +268,13 @@ def make_mystery(input_weights, default_settings, args):
         roll_setting('dropshuffle')
         if settings['dropshuffle'] == 'underworld':
             force_setting('swords', 'assured')
-            startinventory.append('Blue Boomerang')
+            startinventory.extend(['Blue Boomerang', 'Compass (Eastern Palace)', 'Compass (Desert Palace)', 'Compass (Tower of Hera)', 'Compass (Escape)', 'Compass (Agahnims Tower)', 'Compass (Palace of Darkness)', 'Compass (Thieves Town)', 'Compass (Skull Woods)', 'Compass (Swamp Palace)', 'Compass (Ice Palace)', 'Compass (Misery Mire)', 'Compass (Turtle Rock)', 'Compass (Ganons Tower)'])
             set_input_weight('startinventory', 'Blue Boomerang', 0)
             force_setting('timer', 'none')
         if settings['dropshuffle'] != 'none':
             set_input_weight('pottery', 'none', 0)
             set_input_weight('pottery', 'cave', 0)
+        
 
         roll_setting('timer')
         if settings['timer'] != 'none':
@@ -351,6 +352,8 @@ def make_mystery(input_weights, default_settings, args):
         roll_setting('pottery')
         if settings['pottery'] not in ('none', 'cave') or settings['dropshuffle'] != 'none':
             force_setting('dungeon_counters', 'on')
+        if settings['pottery'] not in ('none', 'cave') and settings['dropshuffle'] == 'none':
+            settings['dropshuffle'] = 'keys'
         if settings['pottery'] != 'none':
             settings['colorizepots'] = 1
 
@@ -536,9 +539,9 @@ def main():
     output_file = args.o if args.o else "MMMM_mystery.json"
     presets = {
         'friendly': {'min_length': -6, 'max_length': 2, 'min_execution': -5, 'max_execution': 3, 'min_familiarity': -5, 'max_familiarity': 8, 'min_variance': -2, 'max_variance': 8, 'min_items': 1, 'max_items': 5},
-        'notslow': {'min_length': -2, 'max_length': 5, 'min_execution': -3, 'max_execution': 4, 'min_familiarity': 2, 'max_familiarity': 15, 'min_variance': -5, 'max_variance': 5, 'min_items': 0, 'max_items': 3},
+        'notslow': {'min_length': -2, 'max_length': 5, 'min_execution': -2, 'max_execution': 4, 'min_familiarity': 2, 'max_familiarity': 15, 'min_variance': -5, 'max_variance': 5, 'min_items': 0, 'max_items': 3},
         'complex': {'min_length': 3, 'max_length': 12, 'min_execution': 0, 'max_execution': 6, 'min_familiarity': 8, 'max_familiarity': 20, 'min_variance': -8, 'max_variance': 5, 'min_items': 0, 'max_items': 3},
-        'ordeal': {'min_length': 10, 'max_length': 25, 'min_execution': 4, 'max_execution': 11, 'min_familiarity': 16, 'max_familiarity': 30, 'min_variance': -8, 'max_variance': 8, 'min_items': 0, 'max_items': 2},
+        'ordeal': {'min_length': 13, 'max_length': 25, 'min_execution': 4, 'max_execution': 11, 'min_familiarity': 16, 'max_familiarity': 30, 'min_variance': -8, 'max_variance': 5, 'min_items': 0, 'max_items': 2},
         'chaos': {'min_length': -100, 'max_length': 100, 'min_execution': -100, 'max_execution': 100, 'min_familiarity': -100, 'max_familiarity': 100, 'min_variance': -100, 'max_variance': 100, 'min_items': 0, 'max_items': 8},
         'volatility': {'min_length': -100, 'max_length': 100, 'min_execution': -100, 'max_execution': 100, 'min_familiarity': -100, 'max_familiarity': 100, 'min_variance': 10, 'max_variance': 100, 'min_items': 0, 'max_items': 8}
     }

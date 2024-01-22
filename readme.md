@@ -50,6 +50,7 @@
 ## ohko:
 - If ohko, enemizer is off
 - If ohko, pottery can't be dungeons, reduced, or lottery
+- If ohko, dropshuffle can't be underworld.
 
 ## enemizer:
 - If enemies are shuffled, enemy health cannot be hard or expert, and it can not be swordless.
@@ -75,7 +76,7 @@
 
 ## enemydrop:
 - Set to keys if any pottery is on
-- Underworld is currently not enabled 
+- If underworld you start with a sword and boomerang and all compasses. 
 
 ## dungeon_items:
 - The allowed options are: none, mc, s, b, mcs, mcb, mcsb
