@@ -159,10 +159,9 @@ def make_mystery(input_weights, default_settings, args):
         return length, variance
 
     @lru_cache(maxsize=None)  # maxsize=None means there's no limit to the cache size
-    def triforcehunt() -> list:
+    def triforcehunt(minimum_pool_size:int , current_pool_size:int) -> list:
         roll_weights = []
-        minimum_pool_size = determine_mandatory_pool_size()
-        current_pool_size = determine_pool_size()
+       
         pool_space = current_pool_size - minimum_pool_size
         base_fraction = current_pool_size / 216
         
@@ -440,7 +439,7 @@ def make_mystery(input_weights, default_settings, args):
         roll_setting('take_any')
 
         if settings['goal'] in ['triforcehunt', 'ganonhunt']:
-            tfh_weights_list = triforcehunt()
+            tfh_weights_list = triforcehunt(minimum_pool_size = determine_mandatory_pool_size(), current_pool_size = determine_pool_size())
             if not tfh_weights_list:
                 continue
             random.shuffle(tfh_weights_list)
@@ -506,7 +505,7 @@ def make_mystery(input_weights, default_settings, args):
             print_to_stdout('Pseudoboots: {}'.format('Yes' if settings['pseudoboots'] == 1 else 'No'))
             print_to_stdout('Boots Hint: {}'.format('Yes' if settings['boots_hint'] == 1 else 'No'))
             if 'triforce_pool' in settings:
-                print_to_stdout('Extra TF Pool: {}%'.format(round(100*(settings['triforce_pool']/settings['triforce_goal']-1),1)))
+                print_to_stdout('Extra TF Pool: {} percent'.format(round(100*(settings['triforce_pool']/settings['triforce_goal']-1),1)))
             break
 
     if within_limits(score):
@@ -598,6 +597,10 @@ def main():
         input_weights['door_shuffle']['basic']['weight'] = 0
         input_weights['door_shuffle']['partitioned']['weight'] = 0
         input_weights['door_shuffle']['crossed']['weight'] = 0
+
+    if args.preset in ['ordeal']:
+        input_weights['pseudoboots']['on']['weight'] = 1
+        input_weights['pseudoboots']['off']['weight'] = 0
 
     mystery_settings = make_mystery(input_weights, default_settings, args)
     if not mystery_settings:
