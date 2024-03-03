@@ -402,15 +402,11 @@ def make_mystery(input_weights, default_settings, args):
         roll_setting('shopsanity')
 
         roll_setting('mystery')
-        if settings['shopsanity'] == 0 and settings['pottery'] == 'none' and settings['goal'] != 'completionist':
+        if settings['shopsanity'] == 0 and settings['pottery'] == 'none' and settings['goal'] != 'completionist' and settings['dropshuffle'] == 'none':
             force_setting('collection_rate', 'off')
         roll_setting('collection_rate')
 
-        if settings['pottery'] not in ['none', 'keys']:
-            set_input_weight('beemizer', '3', 0)
-            set_input_weight('beemizer', '4', 0)
-
-        if settings['timer'] != 'none':
+        if settings['pottery'] not in ['none', 'keys'] or settings['dropshuffle'] == 'underworld' or settings['timer'] != 'none':
             force_setting('beemizer', '0')
 
         roll_setting('beemizer')
