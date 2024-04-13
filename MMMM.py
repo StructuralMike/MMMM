@@ -512,6 +512,7 @@ def make_mystery(input_weights, default_settings, args):
             print_to_stdout('Take Any: {}'.format(settings['take_any']))
             print_to_stdout('Pseudoboots: {}'.format('Yes' if settings['pseudoboots'] == 1 else 'No'))
             print_to_stdout('Boots Hint: {}'.format('Yes' if settings['boots_hint'] == 1 else 'No'))
+            print_to_stdout('MMMM v2')
             if 'triforce_pool' in settings:
                 print_to_stdout('Extra TF Pool: {} percent'.format(round(100*(settings['triforce_pool']/settings['triforce_goal']-1),1)))
             break
