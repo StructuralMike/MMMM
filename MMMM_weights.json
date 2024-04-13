@@ -482,7 +482,7 @@
             "execution": 0,
             "familiarity": 0,
             "variance": 0,
-            "expose": false
+            "expose": true
         },
         "display": {
             "weight": 0,
@@ -506,7 +506,7 @@
             "execution": 4,
             "familiarity": 3,
             "variance": 0,
-            "expose": false
+            "expose": true
         },
         "ohko": {
             "weight": 0,
