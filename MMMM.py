@@ -6,7 +6,7 @@ import sys
 import numpy as np
 from functools import lru_cache
 
-MAX_ATTEMPTS = 2000
+MAX_ATTEMPTS = 10000
 
 # Non-potchecks
 NONDUNGEON = 93
@@ -267,7 +267,7 @@ def make_mystery(input_weights, default_settings, args):
         roll_setting('dropshuffle')
         if settings['dropshuffle'] == 'underworld':
             force_setting('swords', 'assured')
-            startinventory.extend(['Blue Boomerang', 'Compass (Eastern Palace)', 'Compass (Desert Palace)', 'Compass (Tower of Hera)', 'Compass (Escape)', 'Compass (Agahnims Tower)', 'Compass (Palace of Darkness)', 'Compass (Thieves Town)', 'Compass (Skull Woods)', 'Compass (Swamp Palace)', 'Compass (Ice Palace)', 'Compass (Misery Mire)', 'Compass (Turtle Rock)', 'Compass (Ganons Tower)'])
+            startinventory.extend(['Blue Boomerang'])
             set_input_weight('startinventory', 'Blue Boomerang', 0)
             force_setting('timer', 'none')
         if settings['dropshuffle'] != 'none':
@@ -560,10 +560,22 @@ def main():
     with open(default_file, "r", encoding='utf-8') as f:
         default_settings = json.load(f)
 
+    if args.preset in ['friendly', 'notslow']:
+        input_weights['door_shuffle']['vanilla']['weight'] = 100
+        input_weights['door_shuffle']['basic']['weight'] = 0
+        input_weights['door_shuffle']['partitioned']['weight'] = 0
+        input_weights['door_shuffle']['crossed']['weight'] = 0
+
+    if args.preset == 'chaos':
+        for setting, options in input_weights.items():
+            for option in options:
+                if input_weights[setting][option]['weight'] != 0:
+                    input_weights[setting][option]['weight'] = 1
+
     if args.force:
         forced_settings = args.force.split(',')
         forced_settings = [s.split(':') for s in forced_settings if ':' in s]
-        for setting,option in forced_settings:
+        for setting, option in forced_settings:
             if setting in input_weights and option in input_weights[setting]:
                 print_to_stdout(f'Forcing {setting}: {option}')
                 for key in input_weights[setting]:
@@ -588,11 +600,6 @@ def main():
         input_weights['mystery']['on']['weight'] = 0
         input_weights['mystery']['off']['weight'] = 1
 
-    if args.preset in ['friendly', 'notslow']:
-        input_weights['door_shuffle']['vanilla']['weight'] = 100
-        input_weights['door_shuffle']['basic']['weight'] = 0
-        input_weights['door_shuffle']['partitioned']['weight'] = 0
-        input_weights['door_shuffle']['crossed']['weight'] = 0
 
     if args.preset in ['ordeal']:
         input_weights['pseudoboots']['on']['weight'] = 1
