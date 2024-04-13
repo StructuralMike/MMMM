@@ -51,6 +51,11 @@ def print_to_stdout(*a) -> None:
 def make_mystery(input_weights, default_settings, args):
     def within_limits(score: dict) -> bool:
         """Check if the score is within the limits of the input weights"""
+        if args.preset in ['chaos']:
+            if -2 <= score['length'] <= 5:
+                return False
+            if 8 >= score['familiarity']:
+                return False
         for attr,min,max in attrs:
             score_val = score[attr]
             if score_val < min or score_val > max:
@@ -206,6 +211,13 @@ def make_mystery(input_weights, default_settings, args):
 
     def item_within_limits(new_points:dict) -> bool:
         """Determine if the new points are within the limits of the input weights"""
+        if args.preset in ['chaos']:
+            new_length = score['length'] + new_points['length']
+            if -2 <= new_length <= 5:
+                return False
+            new_familiarity = score['familiarity'] + new_points['familiarity']
+            if 8 >= new_familiarity:
+                return False
         for attr, attr_min, attr_max in attrs:
             new_score = score[attr] + new_points[attr]
             if new_score < attr_min or new_score > attr_max:
@@ -571,6 +583,7 @@ def main():
             for option in options:
                 if input_weights[setting][option]['weight'] != 0:
                     input_weights[setting][option]['weight'] = 1
+        input_weights['timer']['none']['weight'] = 10
 
     if args.force:
         forced_settings = args.force.split(',')
