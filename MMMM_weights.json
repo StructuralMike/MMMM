@@ -553,7 +553,7 @@
             "expose": false
         },
         "locations": {
-            "weight": 75,
+            "weight": 100,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
@@ -561,7 +561,7 @@
             "expose": false
         },
         "none": {
-            "weight": 25,
+            "weight": 0,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
