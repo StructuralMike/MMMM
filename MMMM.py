@@ -554,37 +554,43 @@ def main():
         'volatility': {'min_length': -100, 'max_length': 100, 'min_execution': -100, 'max_execution': 100, 'min_familiarity': -100, 'max_familiarity': 100, 'min_variance': 10, 'max_variance': 100, 'min_items': 0, 'max_items': 8}
     }
 
-    args.preset = args.preset if args.preset in presets else 'friendly'
+    if args.preset:
+        args.preset = args.preset if args.preset in presets else 'friendly'
 
-    preset = presets.get(args.preset, {})
-    args.min_length = args.min_length if args.min_length else preset.get('min_length', 0)
-    args.max_length = args.max_length if args.max_length else preset.get('max_length', 0)
-    args.min_execution = args.min_execution if args.min_execution else preset.get('min_execution', 0)
-    args.max_execution = args.max_execution if args.max_execution else preset.get('max_execution', 0)
-    args.min_familiarity = args.min_familiarity if args.min_familiarity else preset.get('min_familiarity', 0)
-    args.max_familiarity = args.max_familiarity if args.max_familiarity else preset.get('max_familiarity', 0)
-    args.min_variance = args.min_variance if args.min_variance else preset.get('min_variance', 0)
-    args.max_variance = args.max_variance if args.max_variance else preset.get('max_variance', 0)
-    args.min_items = args.min_items if args.min_items else preset.get('min_items', 0)
-    args.max_items = args.max_items if args.max_items else preset.get('max_items', 0)
+        preset = presets.get(args.preset, {})
+        args.min_length = args.min_length if args.min_length else preset.get('min_length', 0)
+        args.max_length = args.max_length if args.max_length else preset.get('max_length', 0)
+        args.min_execution = args.min_execution if args.min_execution else preset.get('min_execution', 0)
+        args.max_execution = args.max_execution if args.max_execution else preset.get('max_execution', 0)
+        args.min_familiarity = args.min_familiarity if args.min_familiarity else preset.get('min_familiarity', 0)
+        args.max_familiarity = args.max_familiarity if args.max_familiarity else preset.get('max_familiarity', 0)
+        args.min_variance = args.min_variance if args.min_variance else preset.get('min_variance', 0)
+        args.max_variance = args.max_variance if args.max_variance else preset.get('max_variance', 0)
+        args.min_items = args.min_items if args.min_items else preset.get('min_items', 0)
+        args.max_items = args.max_items if args.max_items else preset.get('max_items', 0)
 
     with open(weight_file, "r", encoding='utf-8') as f:
         input_weights = json.load(f)
     with open(default_file, "r", encoding='utf-8') as f:
         default_settings = json.load(f)
 
-    if args.preset in ['friendly', 'notslow']:
-        input_weights['door_shuffle']['vanilla']['weight'] = 100
-        input_weights['door_shuffle']['basic']['weight'] = 0
-        input_weights['door_shuffle']['partitioned']['weight'] = 0
-        input_weights['door_shuffle']['crossed']['weight'] = 0
+    if args.preset:
+        if args.preset in ['friendly', 'notslow']:
+            input_weights['door_shuffle']['vanilla']['weight'] = 100
+            input_weights['door_shuffle']['basic']['weight'] = 0
+            input_weights['door_shuffle']['partitioned']['weight'] = 0
+            input_weights['door_shuffle']['crossed']['weight'] = 0
 
-    if args.preset == 'chaos':
-        for setting, options in input_weights.items():
-            for option in options:
-                if input_weights[setting][option]['weight'] != 0:
-                    input_weights[setting][option]['weight'] = 1
-        input_weights['timer']['none']['weight'] = 10
+        if args.preset == 'chaos':
+            for setting, options in input_weights.items():
+                for option in options:
+                    if input_weights[setting][option]['weight'] != 0:
+                        input_weights[setting][option]['weight'] = 1
+            input_weights['timer']['none']['weight'] = 10
+
+        if args.preset in ['ordeal']:
+            input_weights['pseudoboots']['on']['weight'] = 1
+            input_weights['pseudoboots']['off']['weight'] = 0
 
     if args.force:
         forced_settings = args.force.split(',')
@@ -615,9 +621,6 @@ def main():
         input_weights['mystery']['off']['weight'] = 1
 
 
-    if args.preset in ['ordeal']:
-        input_weights['pseudoboots']['on']['weight'] = 1
-        input_weights['pseudoboots']['off']['weight'] = 0
 
     mystery_settings = make_mystery(input_weights, default_settings, args)
     if not mystery_settings:
