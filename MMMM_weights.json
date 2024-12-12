@@ -1220,7 +1220,7 @@
             "execution": 0,
             "familiarity": 0,
             "variance": 0,
-            "expose": false
+            "expose": true
         },
         "none": {
             "weight": 75,
@@ -1228,7 +1228,7 @@
             "execution": 0,
             "familiarity": 0,
             "variance": 0,
-            "expose": false
+            "expose": true
         },
         "underworld": {
             "weight": 25,
@@ -1236,7 +1236,7 @@
             "execution": 2,
             "familiarity": 5,
             "variance": 2,
-            "expose": false
+            "expose": true
         }
     },
     "pottery": {
