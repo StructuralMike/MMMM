@@ -891,12 +891,12 @@
     },
     "shufflebosses": {
         "none": {
-            "weight": 75,
+            "weight": 70,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
             "variance": 0,
-            "expose": false
+            "expose": true
         },
         "simple": {
             "weight": 0,
@@ -912,7 +912,7 @@
             "execution": 1,
             "familiarity": 1,
             "variance": 1,
-            "expose": false
+            "expose": true
         },
         "full": {
             "weight": 2,
@@ -920,15 +920,15 @@
             "execution": 1,
             "familiarity": 1,
             "variance": 1,
-            "expose": false
+            "expose": true
         },
         "random": {
-            "weight": 0,
+            "weight": 5,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
             "variance": 0,
-            "expose": false
+            "expose": true
         }
     },
     "enemy_damage": {
