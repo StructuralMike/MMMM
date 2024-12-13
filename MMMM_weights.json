@@ -141,7 +141,7 @@
     },
     "goal": {
         "ganon": {
-            "weight": 35,
+            "weight": 40,
             "length": 0,
             "execution": 0,
             "familiarity": -1,
@@ -149,7 +149,7 @@
             "expose": true
         },
         "pedestal": {
-            "weight": 5,
+            "weight": 4,
             "length": -1,
             "execution": 0,
             "familiarity": 1,
@@ -165,7 +165,7 @@
             "expose": true
         },
         "triforcehunt": {
-            "weight": 20,
+            "weight": 14,
             "length": 0,
             "execution": 0,
             "familiarity": 0,
