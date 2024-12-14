@@ -753,7 +753,7 @@
     },
     "shuffle": {
         "vanilla": {
-            "weight": 50,
+            "weight": 58,
             "length": 0,
             "execution": 0,
             "familiarity": -1,
@@ -761,7 +761,7 @@
             "expose": true
         },
         "restricted": {
-            "weight": 13,
+            "weight": 5,
             "length": 2,
             "execution": 0,
             "familiarity": 2,
