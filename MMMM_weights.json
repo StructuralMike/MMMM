@@ -761,7 +761,7 @@
             "expose": true
         },
         "restricted": {
-            "weight": 5,
+            "weight": 0,
             "length": 2,
             "execution": 0,
             "familiarity": 2,
@@ -769,7 +769,7 @@
             "expose": true
         },
         "crossed": {
-            "weight": 35,
+            "weight": 40,
             "length": 2,
             "execution": 1,
             "familiarity": 3,
